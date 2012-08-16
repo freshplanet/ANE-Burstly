@@ -26,8 +26,8 @@
 	<target name="cleanBinaries">
 		<delete dir="${BINARIES_FOLDER}"/>
 		<mkdir dir="${BINARIES_FOLDER}"/>
-		<!-- <mkdir dir="${BINARIES_FOLDER}/Android"/>
-		<mkdir dir="${BINARIES_FOLDER}/Android/res"/> -->
+		<mkdir dir="${BINARIES_FOLDER}/Android"/>
+		<mkdir dir="${BINARIES_FOLDER}/Android/res"/>
 		<mkdir dir="${BINARIES_FOLDER}/Default"/>
 		<mkdir dir="${BINARIES_FOLDER}/iOS"/>
 	</target>	
@@ -93,11 +93,11 @@
 			<arg value="-swc"/>
 			<arg value="${SWC_PATH}"/>
 			
-			<!-- <arg value="-platform"/> 
+			<arg value="-platform"/> 
 			<arg value="Android-ARM"/>
 			<arg value="-C"/>
 			<arg value="${BINARIES_FOLDER}/Android"/>
-			<arg value="."/> -->
+			<arg value="."/>
 			
 			<arg value="-platform"/>
 			<arg value="iPhone-ARM"/>

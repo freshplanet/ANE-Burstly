@@ -21,6 +21,7 @@ package com.freshplanet.nativeExtensions
 	import flash.events.EventDispatcher;
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
+	import flash.system.Capabilities;
 	
 	public class Burstly extends EventDispatcher
 	{
@@ -52,6 +53,8 @@ package com.freshplanet.nativeExtensions
 		
 		public function initBurstly( publisherId : String, zoneId : String ) : void
 		{
+			if (!isSupported) return;
+				
 			_extCtx.call('initBurstly', publisherId, zoneId);
 			_initialized = true;
 		}
@@ -63,12 +66,21 @@ package com.freshplanet.nativeExtensions
 		
 		public function displayAd() : void
 		{
+			if (!isSupported) return;
+			
 			_extCtx.call('displayAd');
 		}
 		
 		public function hideAd() : void
 		{
+			if (!isSupported) return;
+			
 			_extCtx.call('hideAd');
+		}
+		
+		private function get isSupported() : Boolean
+		{
+			return Capabilities.manufacturer.indexOf("iOS") > -1;
 		}
 		
 		private function onStatus( event : StatusEvent ) : void
