@@ -1,0 +1,17 @@
+<platform xmlns="http://ns.adobe.com/air/extension/3.1">
+    <sdkVersion>4.0</sdkVersion>
+    <linkerOptions>
+	    <option>-force_load "/System/Library/Frameworks/libBurstly_AllNetworks_Latest.a"</option>
+        <option>-framework AddressBook</option> 
+        <option>-framework AddressBookUI</option> 
+        <option>-framework CoreMotion</option>
+        <option>-framework CoreTelephony</option>
+        <option>-framework EventKit</option>
+		<option>-framework iAd</option>
+		<option>-framework MapKit</option>
+		<option>-framework MediaPlayer</option>
+		<option>-framework MessageUI</option>
+		<option>-framework OpenAL</option>
+		<option>-framework StoreKit</option>
+    </linkerOptions> 
+</platform>
