@@ -1,7 +1,7 @@
 <platform xmlns="http://ns.adobe.com/air/extension/3.1">
     <sdkVersion>4.0</sdkVersion>
     <linkerOptions>
-	    <option>-force_load "/System/Library/Frameworks/libBurstly_AllNetworks_Latest.a"</option>
+        <option>-ObjC</option>
         <option>-framework AddressBook</option> 
         <option>-framework AddressBookUI</option> 
         <option>-framework CoreMotion</option>

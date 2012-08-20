@@ -73,7 +73,7 @@ static AirBurstly *sharedInstance = nil;
             _adManager = [[OAIAdManager alloc] initWithDelegate:self];
             
             // Turn on Burstly debug logs
-            [BurstlyLogger setLogLevel:AS_LOG_LEVEL_DEBUG];
+//            [BurstlyLogger setLogLevel:AS_LOG_LEVEL_DEBUG];
         }
     }
     return self;

@@ -17,7 +17,7 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 #import "FlashRuntimeExtensions.h"
-#import "BurstlyLogger.h"
+//#import "BurstlyLogger.h"
 #import "OAIAdManager.h"
 
 @interface AirBurstly : NSObject <OAIAdManagerDelegate>
