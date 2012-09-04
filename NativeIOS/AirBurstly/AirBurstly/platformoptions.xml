@@ -4,13 +4,13 @@
         <option>-ObjC</option>
         <option>-framework AddressBook</option> 
         <option>-framework AddressBookUI</option> 
-        <option>-framework CoreMotion</option>
-        <option>-framework CoreTelephony</option>
-        <option>-framework EventKit</option>
-		<option>-framework iAd</option>
+        <option>-weak_framework CoreMotion</option>
+        <option>-weak_framework CoreTelephony</option>
+        <option>-weak_framework EventKit</option>
+		<option>-weak_framework iAd</option>
 		<option>-framework MapKit</option>
-		<option>-framework MediaPlayer</option>
-		<option>-framework MessageUI</option>
+		<option>-weak_framework MediaPlayer</option>
+		<option>-weak_framework MessageUI</option>
 		<option>-framework OpenAL</option>
 		<option>-framework StoreKit</option>
     </linkerOptions> 
