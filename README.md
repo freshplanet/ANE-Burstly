@@ -30,7 +30,6 @@ Usage
 
 Here are the three lines of Actionscript code you need to use this ANE:
     
-    ```actionscript
     // Initialize the extension
     Burstly.getInstance().initBurstly("yourPublisherID", "yourZoneID");
 
@@ -39,7 +38,6 @@ Here are the three lines of Actionscript code you need to use this ANE:
 
     // Hide the banner
     Burstly.getInstance().hideAd();
-    ```
 
 
 Build script
