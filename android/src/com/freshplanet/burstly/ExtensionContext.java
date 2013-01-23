@@ -155,7 +155,7 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	private void initialize()
 	{
 		Burstly.init(getActivity(), _appId);
-		Burstly.setLoggingEnabled(true);
+		Burstly.setLoggingEnabled(false);
 		_initialized = true;
 	}
 	
