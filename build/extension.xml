@@ -17,21 +17,27 @@
 //////////////////////////////////////////////////////////////////////////////////////-->
 
 <extension xmlns="http://ns.adobe.com/air/extension/3.1">
-  <id>com.freshplanet.AirBurstly</id>
-  <versionNumber>1.0</versionNumber>
-  <platforms>
-    <platform name="iPhone-ARM">
+    <id>com.freshplanet.AirBurstly</id>
+    <versionNumber>1.0</versionNumber>
+    <platforms>
+        <platform name="iPhone-ARM">
             <applicationDeployment>
                 <nativeLibrary>libAirBurstly.a</nativeLibrary>
-                <initializer>AirBurstlyInitializer</initializer> 
+                <initializer>AirBurstlyInitializer</initializer>
+                <finalizer>AirBurstlyFinalizer</finalizer>
             </applicationDeployment>
-    </platform>
-    <platform name="Android-ARM"> 
-        <applicationDeployment/>
-    </platform> 
-    
-    <platform name="default"> 
-        <applicationDeployment/> 
-    </platform> 
-  </platforms>
+        </platform>
+
+        <platform name="Android-ARM"> 
+            <applicationDeployment> 
+                <nativeLibrary>libAirBurstly.jar</nativeLibrary> 
+                <initializer>com.freshplanet.burstly.Extension</initializer> 
+                <finalizer>com.freshplanet.burstly.Extension</finalizer> 
+            </applicationDeployment>
+        </platform> 
+
+        <platform name="default"> 
+            <applicationDeployment/> 
+        </platform> 
+    </platforms>
 </extension>

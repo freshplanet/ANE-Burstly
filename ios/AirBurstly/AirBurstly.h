@@ -17,32 +17,45 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 #import "FlashRuntimeExtensions.h"
-//#import "BurstlyLogger.h"
-#import "OAIAdManager.h"
+#import "BurstlyAdRequest.h"
+#import "BurstlyBannerViewDelegate.h"
+#import "BurstlyInterstitialDelegate.h"
 
-@interface AirBurstly : NSObject <OAIAdManagerDelegate>
+@interface AirBurstly : NSObject <BurstlyBannerViewDelegate, BurstlyInterstitialDelegate>
 
 + (AirBurstly *)sharedInstance;
 
-- (id)initWithPublisherId:(NSString *)publisherId zoneId:(NSString *)zoneId;
-- (void)displayAd;
+@property (nonatomic, retain) NSString *appId;
+@property (nonatomic, retain) NSString *bannerZoneId;
+@property (nonatomic, retain) NSString *interstitialZoneId;
+
+@property (nonatomic, getter=isIntegrationMode) BOOL integrationMode;
+@property (nonatomic) BurstlyTestAdNetwork testAdNetwork;
+
++ (void)dispatchEvent:(NSString *)eventName withInfo:(NSString *)info;
++ (void)log:(NSString *)message;
+
+- (void)showBanner;
+- (void)hideBanner;
+- (BOOL)isInterstitialPreCached;
+- (void)showInterstitial;
 
 @end
 
 
-// AirBurstly C interface
-
-DEFINE_ANE_FUNCTION(initBurstly);
-DEFINE_ANE_FUNCTION(displayAd);
-DEFINE_ANE_FUNCTION(hideAd);
+// C interface
+DEFINE_ANE_FUNCTION(AirBurstlySetAppId);
+DEFINE_ANE_FUNCTION(AirBurstlySetBannerZoneId);
+DEFINE_ANE_FUNCTION(AirBurstlySetInterstitialZoneId);
+DEFINE_ANE_FUNCTION(AirBurstlyShowBanner);
+DEFINE_ANE_FUNCTION(AirBurstlyHideBanner);
+DEFINE_ANE_FUNCTION(AirBurstlyIsInterstitialPreCached);
+DEFINE_ANE_FUNCTION(AirBurstlyShowInterstitial);
+DEFINE_ANE_FUNCTION(AirBurstlySetIntegrationMode);
 
 
 // ANE setup
-
-void AirBurstlyContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
-                             uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet);
-
+void AirBurstlyContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet);
 void AirBurstlyContextFinalizer(FREContext ctx);
-
-void AirBurstlyInitializer(void** extDataToSet, FREContextInitializer* ctxInitializerToSet, FREContextFinalizer* ctxFinalizerToSet );
-
+void AirBurstlyInitializer(void** extDataToSet, FREContextInitializer* ctxInitializerToSet, FREContextFinalizer* ctxFinalizerToSet);
+void AirBurstlyFinalizer(void* extData);

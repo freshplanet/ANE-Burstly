@@ -1,22 +1,17 @@
-Air Native Extension for Burstly (iOS only)
+Air Native Extension for Burstly (iOS + Android)
 ======================================
 
-This is an [Air native extension](http://www.adobe.com/devnet/air/native-extensions-for-air.html) for [Burstly](http://burstly.com) SDK on iOS. It has been developed by [FreshPlanet](http://freshplanet.com) and is used in the game [SongPop](http://songpop.fm).
+This is an [Air native extension](http://www.adobe.com/devnet/air/native-extensions-for-air.html) for [Burstly](http://burstly.com) SDK on iOS and Android. It has been developed by [FreshPlanet](http://freshplanet.com) and is used in the game [SongPop](http://songpop.fm).
 
 
-Burstly
--------
+Burstly SDK
+--------
 
-This ANE only works for displaying a banner ad at the bottom of the screen.
+This ANE includes the following versions of the Burstly SDK:
+* iOS: 1.36.0
+* Android: 1.18.0
 
-It has been tested with the following third-party networks:
-
-* AdMob
-* Greystripe
-* iAd
-* InMobi
-* Jumptap
-* Millenial Media
+It only supports displaying a bottom banner and/or a fullscreen interstitial.
 
 
 Installation
@@ -27,17 +22,29 @@ The ANE binary (AirBurstly.ane) is located in the *bin* folder. You should add i
 
 Usage
 -----
-
-Here are the three lines of Actionscript code you need to use this ANE:
     
-    // Initialize the extension
-    Burstly.getInstance().initBurstly("yourPublisherID", "yourZoneID");
+    ```actionscript
+    // Initialize Burstly
+    Burstly.getInstance().setAppId("MY_BURSTLY_APP_ID");
+    Burstly.getInstance().setBannerZoneId("MY_BURSTLY_BANNER_ZONE_ID");
+    Burstly.getInstance().setInterstitialZoneId("MY_BURSTLY_INTERSTITIAL_ZONE_ID");
 
-    // Display the banner
-    Burstly.getInstance().displayAd();
+    // Show the banner
+    Burstly.getInstance().showBanner();
 
     // Hide the banner
-    Burstly.getInstance().hideAd();
+    Burstly.getInstance().hideBanner();
+
+    // Check if an interstitial is pre-cached
+    Burstly.getInstance().isInterstitialPreCached();
+
+    // Show the interstitial
+    Burstly.getInstance().showInterstitial();
+    ```
+
+Notes:
+* interstitial pre-caching is performed automatically on iOS.
+* interstitial pre-caching currently doesn't work on Android and the *isInterstitialPreCached()* method will always return *true* on this platform.
 
 
 Build script

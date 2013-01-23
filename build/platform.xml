@@ -1,17 +1,23 @@
 <platform xmlns="http://ns.adobe.com/air/extension/3.1">
-    <sdkVersion>4.3</sdkVersion>
+    <sdkVersion>6.0</sdkVersion>
     <linkerOptions>
         <option>-ObjC</option>
         <option>-framework AddressBook</option> 
         <option>-framework AddressBookUI</option> 
-        <option>-weak_framework CoreMotion</option>
-        <option>-weak_framework CoreTelephony</option>
-        <option>-weak_framework EventKit</option>
-		<option>-weak_framework iAd</option>
+        <option>-weak_framework AdSupport</option>
+        <option>-framework CoreMotion</option>
+        <option>-framework CoreTelephony</option>
+        <option>-framework EventKit</option>
+        <option>-framework EventKitUI</option>
+		<option>-framework iAd</option>
 		<option>-framework MapKit</option>
-		<option>-weak_framework MediaPlayer</option>
-		<option>-weak_framework MessageUI</option>
+		<option>-framework MediaPlayer</option>
+		<option>-framework MessageUI</option>
 		<option>-framework OpenAL</option>
+        <option>-weak_framework PassKit</option>
 		<option>-framework StoreKit</option>
+        <option>-lsqlite3</option>
+        <option>-lxml2</option>
+        <option>-lz</option>
     </linkerOptions> 
 </platform>
