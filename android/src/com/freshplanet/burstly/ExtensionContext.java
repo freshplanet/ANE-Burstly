@@ -40,6 +40,7 @@ import com.burstly.conveniencelayer.events.AdFailEvent;
 import com.burstly.conveniencelayer.events.AdHideEvent;
 import com.burstly.conveniencelayer.events.AdPresentFullscreenEvent;
 import com.burstly.conveniencelayer.events.AdShowEvent;
+import com.freshplanet.burstly.functions.AirBurstlyGetSDKVersion;
 import com.freshplanet.burstly.functions.AirBurstlyHideBanner;
 import com.freshplanet.burstly.functions.AirBurstlyIsInterstitialPreCached;
 import com.freshplanet.burstly.functions.AirBurstlyOnPause;
@@ -71,6 +72,7 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 		functionMap.put("AirBurstlyShowInterstitial", new AirBurstlyShowInterstitial());
 		functionMap.put("AirBurstlyOnResume", new AirBurstlyOnResume());
 		functionMap.put("AirBurstlyOnPause", new AirBurstlyOnPause());
+		functionMap.put("AirBurstlyGetSDKVersion", new AirBurstlyGetSDKVersion());
 		
 		return functionMap;	
 	}

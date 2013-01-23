@@ -52,6 +52,7 @@ DEFINE_ANE_FUNCTION(AirBurstlyHideBanner);
 DEFINE_ANE_FUNCTION(AirBurstlyIsInterstitialPreCached);
 DEFINE_ANE_FUNCTION(AirBurstlyShowInterstitial);
 DEFINE_ANE_FUNCTION(AirBurstlySetIntegrationMode);
+DEFINE_ANE_FUNCTION(AirBurstlyGetSDKVersion);
 
 
 // ANE setup

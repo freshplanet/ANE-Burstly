@@ -19,13 +19,19 @@
 #import "AirBurstly.h"
 #import "BurstlyAdError.h"
 #import "BurstlyAdRequest.h"
+#import "BurstlyAdUtils.h"
 #import "BurstlyBannerAdView.h"
 #import "BurstlyInterstitial.h"
+
+#define INTERSTITIAL_MAX_FAILURE_COUNT  5
 
 FREContext AirBurstlyCtx = nil;
 
 
 @interface AirBurstly ()
+{
+    NSUInteger _interstitialFailureCount;
+}
 
 @property (nonatomic, readonly) UIViewController *rootViewController;
 @property (nonatomic, readonly) BurstlyBannerAdView *banner;
@@ -240,13 +246,19 @@ static AirBurstly *sharedInstance = nil;
     
     FREDispatchStatusEventAsync(AirBurstlyCtx, (const uint8_t *)"INTERSTITIAL_DID_FAIL", (const uint8_t *)"OK");
     
-    [self.interstitial cacheAd];
+    _interstitialFailureCount++;
+    if (_interstitialFailureCount < INTERSTITIAL_MAX_FAILURE_COUNT)
+    {
+        [self.interstitial cacheAd];
+    }
 }
 
 - (void)burstlyInterstitial:(BurstlyInterstitial *)ad didCache:(NSString *)adNetwork
 {
     NSString *message = [NSString stringWithFormat:@"%@ interstitial did cache", adNetwork];
     FREDispatchStatusEventAsync(AirBurstlyCtx, (const uint8_t *)"LOGGING", (const uint8_t *)[message UTF8String]);
+    
+    _interstitialFailureCount = 0;
 }
 
 @end
@@ -389,13 +401,25 @@ DEFINE_ANE_FUNCTION(AirBurstlySetIntegrationMode)
     return nil;
 }
 
+DEFINE_ANE_FUNCTION(AirBurstlyGetSDKVersion)
+{
+    NSString *sdkVersion = [BurstlyAdUtils version];
+    
+    FREObject result;
+    if (FRENewObjectFromUTF8(sdkVersion.length, (const uint8_t *)[sdkVersion UTF8String], &result) == FRE_OK)
+    {
+        return result;
+    }
+    else return nil;
+}
+
 
 #pragma mark - ANE setup
 
 void AirBurstlyContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet)
 {
     // Register the links btwn AS3 and ObjC. (dont forget to modify the nbFuntionsToLink integer if you are adding/removing functions)
-    NSInteger nbFuntionsToLink = 8;
+    NSInteger nbFuntionsToLink = 9;
     *numFunctionsToTest = nbFuntionsToLink;
     
     FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * nbFuntionsToLink);
@@ -431,6 +455,10 @@ void AirBurstlyContextInitializer(void* extData, const uint8_t* ctxType, FRECont
     func[7].name = (const uint8_t*) "AirBurstlySetIntegrationMode";
     func[7].functionData = NULL;
     func[7].function = &AirBurstlySetIntegrationMode;
+    
+    func[8].name = (const uint8_t*) "AirBurstlyGetSDKVersion";
+    func[8].functionData = NULL;
+    func[8].function = &AirBurstlyGetSDKVersion;
     
     *functionsToSet = func;
     

@@ -42,7 +42,7 @@ package com.freshplanet.ane.AirBurstly
 		
 		public var logEnabled : Boolean = false;
 		
-		/** Burstly is supported on iOS devices. */
+		/** Burstly is supported on iOS and Android devices. */
 		public static function get isSupported() : Boolean
 		{
 			return Capabilities.manufacturer.indexOf("iOS") != -1 || Capabilities.manufacturer.indexOf("Android") != -1;
@@ -74,6 +74,14 @@ package com.freshplanet.ane.AirBurstly
 		public static function getInstance() : Burstly
 		{
 			return _instance ? _instance : new Burstly();
+		}
+		
+		/** Burstly SDK version depends on the platform. */
+		public function get sdkVersion() : String 
+		{
+			if (!isSupported) return null;
+			
+			return _context.call("AirBurstlyGetSDKVersion") as String;
 		}
 		
 		public function setAppId( appId : String ) : void
