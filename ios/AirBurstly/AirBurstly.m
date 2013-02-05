@@ -118,9 +118,9 @@ static AirBurstly *sharedInstance = nil;
     if (!_banner && _appId && _bannerZoneId)
     {
         CGRect bannerFrame = CGRectZero;
-        bannerFrame.origin.x = self.rootViewController.view.frame.size.width/2 - BBANNER_SIZE_320x53.width/2;
-        bannerFrame.origin.y = self.rootViewController.view.frame.size.height - BBANNER_SIZE_320x53.height;
-        bannerFrame.size = BBANNER_SIZE_320x53;
+        bannerFrame.size = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? BBANNER_SIZE_728x90 : BBANNER_SIZE_320x53;
+        bannerFrame.origin.x = self.rootViewController.view.frame.size.width/2 - bannerFrame.size.width/2;
+        bannerFrame.origin.y = self.rootViewController.view.frame.size.height - bannerFrame.size.height;
         
         _banner = [[BurstlyBannerAdView alloc] initWithAppId:_appId zoneId:_bannerZoneId frame:bannerFrame anchor:kBurstlyAnchorBottom rootViewController:self.rootViewController delegate:self];
     }
