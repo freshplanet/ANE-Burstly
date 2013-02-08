@@ -21,6 +21,7 @@ package com.freshplanet.burstly;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.graphics.Color;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -119,7 +120,7 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	
 	public void showBanner()
 	{
-		getRootContainer().addView(getBannerContainer(), new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		getRootContainer().addView(getBannerContainer());
 		getBanner().showAd();
 	}
 	
@@ -169,6 +170,22 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 		if (_bannerContainer == null)
 		{
 			_bannerContainer = new FrameLayout(getActivity());
+			
+			FrameLayout.LayoutParams layoutParams;
+			float scale = getActivity().getResources().getDisplayMetrics().density;
+			int tabletBannerWidth = Math.round(728*scale);
+			int tabletBannerHeight = Math.round(90*scale);
+			int phoneBannerWidth = Math.round(320*scale);
+			int phoneBannerHeight = Math.round(53*scale);
+			if (getRootContainer().getWidth() >= tabletBannerWidth)
+			{
+				layoutParams = new FrameLayout.LayoutParams(tabletBannerWidth, tabletBannerHeight, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL);
+			}
+			else
+			{
+				layoutParams = new FrameLayout.LayoutParams(phoneBannerWidth, phoneBannerHeight, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL);
+			}
+			_bannerContainer.setLayoutParams(layoutParams);
 		}
 		
 		return _bannerContainer;
