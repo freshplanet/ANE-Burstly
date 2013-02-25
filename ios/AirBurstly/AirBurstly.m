@@ -23,15 +23,12 @@
 #import "BurstlyBannerAdView.h"
 #import "BurstlyInterstitial.h"
 
-#define INTERSTITIAL_MAX_FAILURE_COUNT  5
+#define INTERSTITIAL_FAILURE_RETRY_DELAY  5 //seconds
 
 FREContext AirBurstlyCtx = nil;
 
 
 @interface AirBurstly ()
-{
-    NSUInteger _interstitialFailureCount;
-}
 
 @property (nonatomic, readonly) UIViewController *rootViewController;
 @property (nonatomic, readonly) BurstlyBannerAdView *banner;
@@ -246,19 +243,13 @@ static AirBurstly *sharedInstance = nil;
     
     FREDispatchStatusEventAsync(AirBurstlyCtx, (const uint8_t *)"INTERSTITIAL_DID_FAIL", (const uint8_t *)"OK");
     
-    _interstitialFailureCount++;
-    if (_interstitialFailureCount < INTERSTITIAL_MAX_FAILURE_COUNT)
-    {
-        [self.interstitial cacheAd];
-    }
+    [self.interstitial performSelector:@selector(cacheAd) withObject:nil afterDelay:INTERSTITIAL_FAILURE_RETRY_DELAY];
 }
 
 - (void)burstlyInterstitial:(BurstlyInterstitial *)ad didCache:(NSString *)adNetwork
 {
     NSString *message = [NSString stringWithFormat:@"%@ interstitial did cache", adNetwork];
     FREDispatchStatusEventAsync(AirBurstlyCtx, (const uint8_t *)"LOGGING", (const uint8_t *)[message UTF8String]);
-    
-    _interstitialFailureCount = 0;
 }
 
 @end
