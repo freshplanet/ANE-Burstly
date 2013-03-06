@@ -21,7 +21,6 @@ package com.freshplanet.burstly;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.graphics.Color;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -30,7 +29,7 @@ import android.widget.FrameLayout;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.burstly.conveniencelayer.Burstly;
-import com.burstly.conveniencelayer.BurstlyBanner;
+import com.burstly.conveniencelayer.BurstlyAnimatedBanner;
 import com.burstly.conveniencelayer.BurstlyBaseAd;
 import com.burstly.conveniencelayer.BurstlyInterstitial;
 import com.burstly.conveniencelayer.IBurstlyListener;
@@ -82,16 +81,23 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	{
 		if (appId != _appId)
 		{
-			_initialized = false;
-			
-			hideBanner();
-			_banner = null;
+			if (_banner != null)
+			{
+				hideBanner();
+				_banner = null;
+			}
 			
 			_interstitial = null;
 			
 			_appId = appId;
 			
-			getInterstitial().cacheAd();
+			if (_initialized)
+			{
+				Burstly.deinit();
+				_initialized = false;
+			}
+			
+			//getInterstitial().cacheAd();
 		}
 	}
 	
@@ -99,8 +105,11 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	{
 		if (zoneId != _bannerZoneId)
 		{
-			hideBanner();
-			_banner = null;
+			if (_banner != null)
+			{
+				hideBanner();
+				_banner = null;
+			}
 			
 			_bannerZoneId = zoneId;
 		}
@@ -126,6 +135,7 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	
 	public void hideBanner()
 	{
+		getBanner().hideAd();
 		getRootContainer().removeView(getBannerContainer());
 	}
 	
@@ -143,10 +153,10 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	
 	// Private API
 	
-	private Boolean _initialized;
+	private Boolean _initialized = false;
 	
 	private ViewGroup _bannerContainer;
-	private BurstlyBanner _banner;
+	private BurstlyAnimatedBanner _banner;
 	private BurstlyInterstitial _interstitial;
 	
 	private String _appId;
@@ -191,13 +201,13 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 		return _bannerContainer;
 	}
 	
-	private BurstlyBanner getBanner()
+	private BurstlyAnimatedBanner getBanner()
 	{
 		if (_banner == null)
 		{
 			if (!_initialized) initialize();
 			
-			_banner = new BurstlyBanner(getActivity(), getBannerContainer(), new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL), _bannerZoneId, "Banner Test", 30);
+			_banner = new BurstlyAnimatedBanner(getActivity(), getBannerContainer(), new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL), _bannerZoneId, "Banner", 30, true);
 			_banner.addBurstlyListener(this);
 		}
 		
