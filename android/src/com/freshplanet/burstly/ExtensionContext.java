@@ -20,6 +20,9 @@ package com.freshplanet.burstly;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -96,8 +99,6 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 				Burstly.deinit();
 				_initialized = false;
 			}
-			
-			//getInterstitial().cacheAd();
 		}
 	}
 	
@@ -123,7 +124,7 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 			
 			_interstitialZoneId = zoneId;
 			
-			//getInterstitial().cacheAd();
+			getInterstitial().cacheAd();
 		}
 	}
 	
@@ -141,8 +142,8 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	
 	public Boolean isInterstitialPreCached()
 	{
-		//return getInterstitial().hasCachedAd();
 		return true;
+		//return getInterstitial().hasCachedAd();
 	}
 	
 	public void showInterstitial()
@@ -152,6 +153,8 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	
 	
 	// Private API
+	
+	private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
 	
 	private Boolean _initialized = false;
 	
@@ -220,8 +223,12 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 		{
 			if (!_initialized) initialize();
 			
-			_interstitial = new BurstlyInterstitial(getActivity(), _interstitialZoneId, "Interstitial Test", false);
+			_interstitial = new BurstlyInterstitial(getActivity(), _interstitialZoneId, "Interstitial", false);
 			_interstitial.addBurstlyListener(this);
+			
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("sid", "267063");
+			_interstitial.setBurstlyUserInfo(map);
 		}
 		
 		return _interstitial;
@@ -242,10 +249,22 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	
 	public void onFail(final BurstlyBaseAd ad, final AdFailEvent event)
 	{
-		Extension.log("On fail: " + ad.getName() + " ("+ad.getZoneId()+") [" + event.getFailedCreativesNetworks() + "]");
+		Extension.log("On fail: " + ad.getName() + " ("+ad.getZoneId()+") [ network: " + event.getFailedCreativesNetworks() + " - was caching: " + event.wasFailureResultOfCachingAttempt() + " - next request in: " + event.getMinTimeUntilNextRequest() + "]");
 		
-		dispatchStatusEventAsync("INTERSTITIAL_DID_FAIL", "OK");
-		//getInterstitial().cacheAd();
+		if (ad == getInterstitial())
+		{
+			Runnable retry = new Runnable() {
+				public void run() {
+					getInterstitial().cacheAd();
+				}
+			};
+			worker.schedule(retry, event.getMinTimeUntilNextRequest()+500, TimeUnit.MILLISECONDS);
+			
+			if (!event.wasFailureResultOfCachingAttempt())
+			{
+				dispatchStatusEventAsync("INTERSTITIAL_DID_FAIL", "OK");
+			}
+		}
 	}
 	
 	public void onCache(final BurstlyBaseAd ad, final AdCacheEvent event)
@@ -267,7 +286,11 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	{
 		Extension.log("On dismiss fullscreen: " + ad.getName() + " ("+ad.getZoneId()+")");
 		
-		dispatchStatusEventAsync("INTERSTITIAL_WILL_DISMISS", "OK");
-		//getInterstitial().cacheAd();
+		if (ad == getInterstitial())
+		{
+			dispatchStatusEventAsync("INTERSTITIAL_WILL_DISMISS", "OK");
+			getInterstitial().cacheAd();
+		}
+		
 	}
 }
