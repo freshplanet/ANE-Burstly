@@ -18,28 +18,44 @@
 
 package com.freshplanet.burstly.functions;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.adobe.fre.FREArray;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.freshplanet.burstly.Extension;
 
-public class AirBurstlySetAppId implements FREFunction
+public class AirBurstlySetUserInfo implements FREFunction
 {
 	@Override
 	public FREObject call(FREContext context, FREObject[] args)
 	{
-		String appId = null;
+		Map<String, String> infos = new HashMap<String, String>();
+		FREArray keysArray = (FREArray)args[0];
+		FREArray valuesArray = (FREArray)args[1];
+		long arrayLength;
 		try
 		{
-			appId = args[0].getAsString();
+			arrayLength = keysArray.getLength();
+			String key;
+			String value;
+			for (int i = 0; i < arrayLength; i++)
+			{
+				key =  keysArray.getObjectAt((long)i).getAsString();
+				value = valuesArray.getObjectAt((long)i).getAsString();
+				infos.put(key, value);
+			}
 		}
 		catch (Exception e)
 		{
+			Extension.log("Error - setUserInfo - Couldn't retrieve Actionscript parameters. Exception message: " + e.getMessage() + ". See \"adb logcat\" for stack trace.");
 			e.printStackTrace();
 			return null;
 		}
 		
-		Extension.context.setAppId(appId);
+		Extension.context.setUserInfo(infos);
 		
 		return null;
 	}

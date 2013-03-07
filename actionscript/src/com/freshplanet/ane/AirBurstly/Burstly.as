@@ -33,13 +33,6 @@ package com.freshplanet.ane.AirBurstly
 		// 																						 //
 		// --------------------------------------------------------------------------------------//
 		
-		public static const ADMOB 		: String = "ADMOB";
-		public static const GREYSTRIPE 	: String = "GREYSTRIPE";
-		public static const INMOBI 		: String = "INMOBI";
-		public static const IAD 		: String = "IAD";
-		public static const JUMPTAP 	: String = "JUMPTAP";
-		public static const MILLENIAL 	: String = "MILLENIAL";
-		
 		public var logEnabled : Boolean = false;
 		
 		/** Burstly is supported on iOS and Android devices. */
@@ -84,25 +77,11 @@ package com.freshplanet.ane.AirBurstly
 			return _context.call("AirBurstlyGetSDKVersion") as String;
 		}
 		
-		public function setAppId( appId : String ) : void
+		public function init( appId : String, bannerZoneId : String, interstitialZoneId : String ) : void
 		{
 			if (!isSupported) return;
 			
-			_context.call("AirBurstlySetAppId", appId);
-		}
-		
-		public function setBannerZoneId( zoneId : String ) : void
-		{
-			if (!isSupported) return;
-			
-			_context.call("AirBurstlySetBannerZoneId", zoneId);
-		}
-		
-		public function setInterstitialZoneId( zoneId : String ) : void
-		{
-			if (!isSupported) return;
-			
-			_context.call("AirBurstlySetInterstitialZoneId", zoneId);
+			_context.call("AirBurstlyInit", appId, bannerZoneId, interstitialZoneId);
 		}
 		
 		public function showBanner() : void
@@ -126,6 +105,13 @@ package com.freshplanet.ane.AirBurstly
 			return _context.call("AirBurstlyIsInterstitialPreCached");
 		}
 		
+		public function cacheInterstitial() : void
+		{
+			if (!isSupported) return;
+			
+			_context.call("AirBurstlyCacheInterstitial");
+		}
+		
 		public function showInterstitial() : void
 		{
 			if (!isSupported) return;
@@ -133,13 +119,20 @@ package com.freshplanet.ane.AirBurstly
 			_context.call("AirBurstlyShowInterstitial");
 		}
 		
-//		Not working for now
-//		public function setIntegrationMode( network : String ) : void
-//		{
-//			if (!isSupported) return;
-//			
-//			_context.call("AirBurstlySetIntegrationMode", network);
-//		}
+		public function setUserInfo( infos : Object ) : void
+		{
+			if (!isSupported) return;
+			
+			// Separate parameters keys and values
+			var keys:Array = []; var values:Array = [];
+			for (var key:String in infos)
+			{
+				keys.push(key);
+				values.push(infos[key]);
+			}
+			
+			_context.call("AirBurstlySetUserInfo", keys, values);
+		}
 		
 		
 		// --------------------------------------------------------------------------------------//

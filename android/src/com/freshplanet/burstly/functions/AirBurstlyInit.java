@@ -23,23 +23,28 @@ import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.freshplanet.burstly.Extension;
 
-public class AirBurstlySetBannerZoneId implements FREFunction
+public class AirBurstlyInit implements FREFunction
 {
 	@Override
 	public FREObject call(FREContext context, FREObject[] args)
 	{
-		String zoneId = null;
+		String appId = null;
+		String bannerZoneId = null;
+		String interstitialZoneId = null;
 		try
 		{
-			zoneId = args[0].getAsString();
+			appId = args[0].getAsString();
+			bannerZoneId = args[1].getAsString();
+			interstitialZoneId = args[2].getAsString();
 		}
 		catch (Exception e)
 		{
+			Extension.log("Error - init - Couldn't retrieve Actionscript parameters. Exception message: " + e.getMessage() + ". See \"adb logcat\" for stack trace.");
 			e.printStackTrace();
 			return null;
 		}
 		
-		Extension.context.setBannerZoneId(zoneId);
+		Extension.context.init(appId, bannerZoneId, interstitialZoneId);
 		
 		return null;
 	}

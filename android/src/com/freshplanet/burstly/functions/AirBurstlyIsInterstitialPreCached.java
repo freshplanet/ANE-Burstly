@@ -35,6 +35,7 @@ public class AirBurstlyIsInterstitialPreCached implements FREFunction
 		}
 		catch (FREWrongThreadException e)
 		{
+			Extension.log("Error - isInterstitialPreCached - Couldn't pass result to Actionscript. Exception message: " + e.getMessage() + ". See \"adb logcat\" for stack trace.");
 			e.printStackTrace();
 			return null;
 		}

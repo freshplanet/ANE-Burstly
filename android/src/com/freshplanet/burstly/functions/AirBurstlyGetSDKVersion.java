@@ -23,6 +23,7 @@ import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.adobe.fre.FREWrongThreadException;
 import com.burstly.lib.constants.BurstlyProperties;
+import com.freshplanet.burstly.Extension;
 
 public class AirBurstlyGetSDKVersion implements FREFunction
 {
@@ -35,6 +36,7 @@ public class AirBurstlyGetSDKVersion implements FREFunction
 		}
 		catch (FREWrongThreadException e)
 		{
+			Extension.log("Error - sdkVersion - Couldn't pass result to Actionscript. Exception message: " + e.getMessage() + ". See \"adb logcat\" for stack trace.");
 			e.printStackTrace();
 			return null;
 		}

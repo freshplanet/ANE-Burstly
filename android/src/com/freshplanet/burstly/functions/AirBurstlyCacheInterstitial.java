@@ -23,23 +23,12 @@ import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.freshplanet.burstly.Extension;
 
-public class AirBurstlySetInterstitialZoneId implements FREFunction
+public class AirBurstlyCacheInterstitial implements FREFunction
 {
 	@Override
 	public FREObject call(FREContext context, FREObject[] args)
 	{
-		String zoneId = null;
-		try
-		{
-			zoneId = args[0].getAsString();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			return null;
-		}
-		
-		Extension.context.setInterstitialZoneId(zoneId);
+		Extension.context.cacheInterstitial();
 		
 		return null;
 	}
