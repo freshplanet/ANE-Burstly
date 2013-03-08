@@ -149,7 +149,10 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	
 	public Boolean isInterstitialPreCached()
 	{
-		return _interstitial.hasCachedAd();
+		return true;
+		
+		// This method doesn't seem reliable for now.
+		//return _interstitial.hasCachedAd();
 	}
 	
 	public void cacheInterstitial()
