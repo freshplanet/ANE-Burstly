@@ -20,20 +20,20 @@
 // notify us prior to rolling out the canvas.
 // Admob, Greystripe, Inmobi
 // @param: adNetwork - Specifies the adNetwork that was displayed.
--(void) burstlyInterstitial:(BurstlyInterstitial *)ad willTakeOverFullScreen:(NSString*)adNetwork;
+- (void)burstlyInterstitial:(BurstlyInterstitial *)ad willTakeOverFullScreen:(NSString*)adNetwork;
 
 // Sent when the modal view controller is dismissed. This is a good time to cache an
 // ad for the next attempt to display an interstitial. eg: between game levels.
--(void) burstlyInterstitial:(BurstlyInterstitial *)ad willDismissFullScreen:(NSString*)adNetwork;
+- (void)burstlyInterstitial:(BurstlyInterstitial *)ad willDismissFullScreen:(NSString*)adNetwork;
 
 @optional
 
--(void) burstlyInterstitial:(BurstlyInterstitial *)ad didHide:(NSString*)lastViewedNetwork;
+- (void)burstlyInterstitial:(BurstlyInterstitial *)ad didHide:(NSString*)lastViewedNetwork;
 
 // Sent when an interstitial ad request succeeded. This callback will be followed by
 // burstlyInterstitial:willTakeOverFullScreen:. @param: adNetwork specifies the
 // mediated network that just loaded.
--(void) burstlyInterstitial:(BurstlyInterstitial *)ad didShow:(NSString*)adNetwork;
+- (void)burstlyInterstitial:(BurstlyInterstitial *)ad didShow:(NSString*)adNetwork;
 
 // Sent when an ad is successfully precached. The ad is now ready to be displayed.
 // Follow up with a call to showAd. @param: adNetwork specifies the mediated network
@@ -47,13 +47,13 @@
 // pending ad after calling showAd. You could remove the spinner after you recieve
 // burstlyInterstitial:willTakeOverFullScreen: or burstlyInterstitial:didFailWithError:
 //callbacks.
--(void) burstlyInterstitial:(BurstlyInterstitial *)ad didCache:(NSString*)adNetwork;
+- (void)burstlyInterstitial:(BurstlyInterstitial *)ad didCache:(NSString*)adNetwork;
 
--(void) burstlyInterstitial:(BurstlyInterstitial *)ad wasClicked:(NSString*)adNetwork;
+- (void)burstlyInterstitial:(BurstlyInterstitial *)ad wasClicked:(NSString*)adNetwork;
 
 // Sent when the ad request has failed. Typically this would occur when either Burstly or
 // one our 3rd party networks have no fill. Refer to BurstlyAdError for more details.
 // You could send a request to cache an ad for your next attempt.
--(void) burstlyInterstitial:(BurstlyInterstitial *)ad didFailWithError:(BurstlyAdError*)error;
+- (void)burstlyInterstitial:(BurstlyInterstitial *)ad didFailWithError:(BurstlyAdError*)error;
 
 @end

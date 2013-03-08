@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface BurstlyUserInfo : NSObject {
     NSString *dateOfBitrh_;
@@ -15,8 +16,6 @@
     NSString *areaCode_;
     NSString *regionCode_;
     NSString *city_;
-    NSString *latitude_;
-    NSString *longitude_;
     NSString *gender_;
     NSString *keyWords_;
     NSString *blockKeywords_;
@@ -26,8 +25,10 @@
     NSString *email_;
     NSString *language_;
     NSString *country_;
+    NSString *state_;
     NSString *interests_;
     NSString *searchString_;
+    CLLocation *location_;
 } 
 
 - (NSDictionary*)userParams;
@@ -39,8 +40,6 @@
 @property (nonatomic, retain) NSString  *zipCode;
 @property (nonatomic, retain) NSString  *regionCode;
 @property (nonatomic, retain) NSString  *city;
-@property (nonatomic, retain) NSString  *latitude;
-@property (nonatomic, retain) NSString  *longitude;
 @property (nonatomic, retain) NSString  *gender;
 @property (nonatomic, retain) NSString  *keyWords;
 @property (nonatomic, retain) NSString  *blockKeywords;
@@ -50,7 +49,9 @@
 @property (nonatomic, retain) NSString  *email;
 @property (nonatomic, retain) NSString  *language;
 @property (nonatomic, retain) NSString  *country;
+@property (nonatomic, retain) NSString  *state;
 @property (nonatomic, retain) NSString  *interests;
 @property (nonatomic, retain) NSString  *searchString;
+@property (nonatomic, retain) CLLocation  *location;
 
 @end

@@ -21,31 +21,29 @@
 // notify us prior to rolling out the canvas.
 // Admob, Greystripe, Inmobi
 // @param: adNetwork - Specifies the adNetwork that was displayed.
--(void) burstlyBannerAdView:(BurstlyBannerAdView *)view willTakeOverFullScreen:(NSString*)adNetwork;
+- (void) burstlyBannerAdView:(BurstlyBannerAdView *)view willTakeOverFullScreen:(NSString*)adNetwork;
 
 // Sent when the ad view is dismissed from screen.
--(void) burstlyBannerAdView:(BurstlyBannerAdView *)view willDismissFullScreen:(NSString*)adNetwork;
+- (void)burstlyBannerAdView:(BurstlyBannerAdView *)view willDismissFullScreen:(NSString*)adNetwork;
 
 @optional
 
--(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didHide:(NSString*)lastViewedNetwork;
-
 // Sent when an ad request succeeded and a valid view is available to be displayed.
 // @param: adNetwork - Specifies the network that was loaded.
--(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didShow:(NSString*)adNetwork;
+- (void)burstlyBannerAdView:(BurstlyBannerAdView *)view didShow:(NSString*)adNetwork;
 
 // Typically caching a banner is not required as it does not introduce delays that affect user
 // experience. But in select cases, the game may run in to resource intensive modes and would require
 // the ad to be loaded during off-peak intervals such as in-between levels. This is when you may want
 // to cache a banner and animate the view whenever applicable.
--(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didCache:(NSString*)adNetwork;
+- (void)burstlyBannerAdView:(BurstlyBannerAdView *)view didCache:(NSString*)adNetwork;
 
 // Sent when the banner ad view is clicked.
--(void) burstlyBannerAdView:(BurstlyBannerAdView *)view wasClicked:(NSString*)adNetwork;
+- (void)burstlyBannerAdView:(BurstlyBannerAdView *)view wasClicked:(NSString*)adNetwork;
 
 // Sent when the ad request has failed. Typically this would occur when either Burstly or
 // one our 3rd party networks have no fill. Refer to BurstlyAdError for more details.
--(void) burstlyBannerAdView:(BurstlyBannerAdView *)view didFailWithError:(BurstlyAdError*)error;
+- (void)burstlyBannerAdView:(BurstlyBannerAdView *)view didFailWithError:(BurstlyAdError*)error;
 
 @end
 

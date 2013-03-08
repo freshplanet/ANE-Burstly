@@ -20,6 +20,7 @@ typedef enum {
     kBurstlyTestIad,
     kBurstlyTestJumptap,
     kBurstlyTestMillennial,
+    kBurstlyTestRewards
 } BurstlyTestAdNetwork;
 
 @interface BurstlyAdRequest : NSObject
@@ -48,6 +49,7 @@ typedef enum {
 // Returns an auto-released BurstlyAdRequest
 + (BurstlyAdRequest *)request;
 
+- (NSString *)getIntegrationModeAppId;
 - (void)setIntegrationModeWithTestNetwork:(BurstlyTestAdNetwork)aTestNetwork filterDeviceMacAddresses:(NSArray *)deviceMacAddresses;
 
 @end

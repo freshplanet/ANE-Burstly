@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BurstlyInterstitialDelegate.h"
 #import "BurstlyAdError.h"
+#import "BurstlyAdRequest.h"
 
 @class BurstlyAdRequest;
 
@@ -48,6 +49,7 @@ typedef enum {
 @interface BurstlyInterstitial : NSObject {
     BurstlyInterstitialState state;
     id<BurstlyInterstitialDelegate> delegate;
+    BOOL _useAutomaticCaching;
 }
 
 /** Required value created via the Burstly web interface. Create
@@ -90,10 +92,22 @@ typedef enum {
 
 @property (nonatomic,retain) BurstlyAdRequest *adRequest;
 
+/** Set to YES to enable automatic caching.
+ * If enabled, this interstitial will automatically begin
+ * caching before showAdWithRootViewController is called.
+ * This is meant to reduce the delay in displaying an interstitial.
+ **/
+- (void)setUseAutomaticCaching:(BOOL)value;
+- (BOOL)useAutomaticCaching;
+
 
 #pragma Intialize the interstitial ad
 
 - (id)initAppId:(NSString *)anAppId zoneId:(NSString *)aZoneId delegate:(id<BurstlyInterstitialDelegate>)aDelegate;
+- (id)initAppId:(NSString *)anAppId zoneId:(NSString *)aZoneId delegate:(id<BurstlyInterstitialDelegate>)aDelegate useAutomaticCaching:(BOOL)automaticCaching;
+
+// NOT FOR PRODUCTION USE. Init with integration mode and a specific test network.
+- (id)initWithIntegrationModeTestNetwork:(BurstlyTestAdNetwork)aTestNetwork filterDeviceMacAddresses:(NSArray *)deviceMacAddresses delegate:(id<BurstlyInterstitialDelegate>)aDelegate;
 
 /** Call to display an interstitial. Should be used in conjunction
  *  with cacheAd. You should provide a valid reference to your

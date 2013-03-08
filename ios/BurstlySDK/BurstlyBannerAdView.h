@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "BurstlyBannerViewDelegate.h"
+#import "BurstlyAdRequest.h"
 
 #pragma mark -
 #pragma mark Ad Sizes
@@ -89,19 +90,10 @@ typedef enum {
 
 // Initialize a new BurstlyBannerAdView object for every zone id provided to you.
 // Do any additional setup after loading the view, typically from a nib.
-
-//CGRect adFrame = CGRectZero;
-//adFrame.size = BBANNER_SIZE_320x53;
-//adFrame.origin = CGPointMake(0, self.view.frame.size.height-50);
-//BurstlyBannerAdView *adView = [[BurstlyBannerAdView alloc] initBannerAdWithFrame:adFrame withAnchor:(kBurstlyAnchorBottom) andDelegate:self];
-//[self.view addSubview:adView];
-//adView.appId = @"TeW3mgnGxkSQXNERLognRQ";
-//adView.zoneId = @"0059914779078214412";
-//adView.rootViewController = self;
-//adView.defaultRefreshInterval = 20.0f;
-//[adView release];
-
 -(id)initWithAppId:(NSString *)anAppId zoneId:(NSString *)aZoneId frame:(CGRect)aFrame anchor:(BurstlyAnchor)anAnchor rootViewController:(UIViewController *)aRootViewController delegate:(id<BurstlyBannerViewDelegate>)aDelegate;
+
+// NOT FOR PRODUCTION USE. Init with integration mode and a specific test network.
+- (id)initWithIntegrationModeTestNetwork:(BurstlyTestAdNetwork)aTestNetwork filterDeviceMacAddresses:(NSArray *)deviceMacAddresses frame:(CGRect)aFrame anchor:(BurstlyAnchor)anAnchor rootViewController:(UIViewController *)aRootViewController delegate:(id<BurstlyBannerViewDelegate>)aDelegate;
 
 // Loads an Ad and accepts an optional request parameter that can be set to nil.
 -(void) showAd;

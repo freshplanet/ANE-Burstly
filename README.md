@@ -8,8 +8,8 @@ Burstly SDK
 --------
 
 This ANE includes the following versions of the Burstly SDK:
-* iOS: 1.36.0
-* Android: 1.18.0
+* iOS: 1.37
+* Android: 1.20
 
 It only supports displaying a bottom banner and/or a fullscreen interstitial.
 
@@ -25,9 +25,7 @@ Usage
     
     ```actionscript
     // Initialize Burstly
-    Burstly.getInstance().setAppId("MY_BURSTLY_APP_ID");
-    Burstly.getInstance().setBannerZoneId("MY_BURSTLY_BANNER_ZONE_ID");
-    Burstly.getInstance().setInterstitialZoneId("MY_BURSTLY_INTERSTITIAL_ZONE_ID");
+    Burstly.getInstance().init("MY_BURSTLY_APP_ID", "MY_BURSTLY_BANNER_ZONE_ID", "MY_BURSTLY_INTERSTITIAL_ZONE_ID");
 
     // Show the banner
     Burstly.getInstance().showBanner();
@@ -38,13 +36,12 @@ Usage
     // Check if an interstitial is pre-cached
     Burstly.getInstance().isInterstitialPreCached();
 
+    // Cache the interstitial
+    Burstly.getInstance().cacheInterstitial();
+
     // Show the interstitial
     Burstly.getInstance().showInterstitial();
     ```
-
-Notes:
-* interstitial pre-caching is performed automatically on iOS.
-* interstitial pre-caching currently doesn't work on Android and the *isInterstitialPreCached()* method will always return *true* on this platform.
 
 
 Build script

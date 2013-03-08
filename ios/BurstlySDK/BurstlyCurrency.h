@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BurstlyCurrencyUpdateInfo.h"
+
 @class BurstlyCurrency;
 
-extern NSString * BurstlyCurrencyBalanceUpdateNotification;
+extern NSString * BurstlyCurrencyBalancesUpdateNotification;
 
 
 
@@ -18,7 +20,7 @@ extern NSString * BurstlyCurrencyBalanceUpdateNotification;
 
 @optional
 
-- (void)currencyManager:(BurstlyCurrency *)manager didUpdateBalance:(NSInteger)newBalance;
+- (void)currencyManager:(BurstlyCurrency *)manager didUpdateBalances:(NSDictionary *)balances;
 - (void)currencyManager:(BurstlyCurrency *)manager didFailToUpdateBalanceWithError:(NSError *)error;
 
 @end
@@ -32,9 +34,9 @@ extern NSString * BurstlyCurrencyBalanceUpdateNotification;
 
 + (BurstlyCurrency *) sharedCurrencyManager;
 
-- (NSInteger) currentBalance;
-- (NSInteger) increaseBalance:(NSUInteger)amount;    
-- (NSInteger) decreaseBalance:(NSUInteger)amount;
+- (NSInteger) currentBalanceForCurrency:(NSString *)currency;
+- (NSInteger) increaseBalance:(NSUInteger)amount forCurrency:(NSString *)currency;
+- (NSInteger) decreaseBalance:(NSUInteger)amount forCurrency:(NSString *)currency;
 
 - (void) checkForUpdate;
 

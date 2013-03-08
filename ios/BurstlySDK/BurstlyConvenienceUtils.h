@@ -12,6 +12,8 @@
 #include <net/if.h>
 #include <net/if_dl.h>
 
+#define BURSTLY_VERSION_CL @"1.0.6"
+
 @interface BurstlyConvenienceUtils : NSObject
 
 @end

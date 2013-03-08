@@ -25,33 +25,28 @@
 
 + (AirBurstly *)sharedInstance;
 
-@property (nonatomic, retain) NSString *appId;
-@property (nonatomic, retain) NSString *bannerZoneId;
-@property (nonatomic, retain) NSString *interstitialZoneId;
-
-@property (nonatomic, getter=isIntegrationMode) BOOL integrationMode;
-@property (nonatomic) BurstlyTestAdNetwork testAdNetwork;
-
 + (void)dispatchEvent:(NSString *)eventName withInfo:(NSString *)info;
 + (void)log:(NSString *)message;
 
+- (void)initWithAppId:(NSString *)appId bannerZoneId:(NSString *)bannerZoneId interstitialZoneId:(NSString *)interstitialZoneId;
+- (void)setUserInfo:(NSString *)infos;
 - (void)showBanner;
 - (void)hideBanner;
 - (BOOL)isInterstitialPreCached;
+- (void)cacheInterstitial;
 - (void)showInterstitial;
 
 @end
 
 
 // C interface
-DEFINE_ANE_FUNCTION(AirBurstlySetAppId);
-DEFINE_ANE_FUNCTION(AirBurstlySetBannerZoneId);
-DEFINE_ANE_FUNCTION(AirBurstlySetInterstitialZoneId);
+DEFINE_ANE_FUNCTION(AirBurstlyInit);
+DEFINE_ANE_FUNCTION(AirBurstlySetUserInfo);
 DEFINE_ANE_FUNCTION(AirBurstlyShowBanner);
 DEFINE_ANE_FUNCTION(AirBurstlyHideBanner);
 DEFINE_ANE_FUNCTION(AirBurstlyIsInterstitialPreCached);
+DEFINE_ANE_FUNCTION(AirBurstlyCacheInterstitial);
 DEFINE_ANE_FUNCTION(AirBurstlyShowInterstitial);
-DEFINE_ANE_FUNCTION(AirBurstlySetIntegrationMode);
 DEFINE_ANE_FUNCTION(AirBurstlyGetSDKVersion);
 
 
