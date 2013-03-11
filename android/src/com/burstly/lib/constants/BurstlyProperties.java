@@ -32,7 +32,7 @@ public final class BurstlyProperties
     	sProperties.setProperty(PropertyKey.SINGLE_DOWNLOAD_TRACK_URI, "/scripts/ConfirmDownload.aspx");
     	sProperties.setProperty(PropertyKey.CONFIGURATION_URI, "/Services/Client.svc/GetConfiguration");
     	sProperties.setProperty(PropertyKey.CONTENT_ROOT, "http://cdn.appads.com/sdk");
-    	sProperties.setProperty(PropertyKey.SDK_VERSION, "1.19.0.34236");
+    	sProperties.setProperty(PropertyKey.SDK_VERSION, "1.20.0.35186");
     	sProperties.setProperty(PropertyKey.AD_SERVER_URI, "/Services/SysInfo.svc/GetAdServerList");
     	
       sIsLoaded = true;
