@@ -26,7 +26,7 @@
 // Skyscraper size for the iPad.
 #define BBANNER_SIZE_120x600    CGSizeMake(120, 600)
 
-@class BurstlyAdRequest;
+@class OAIAdManager;
 /** The anchor tag specifies the region on the frame from where the banner ad fills out.
  Specifying the anchor ensures that the ads of varying sizes (in pixels) are held in place
  with respect to their superview.
@@ -40,9 +40,7 @@ typedef enum {
 } BurstlyAnchor;
 
 @interface BurstlyBannerAdView : UIView {
-    CGSize adSize;
-    UIViewController *rootViewController;
-    id<BurstlyBannerViewDelegate> delegate;
+    OAIAdManager *_adManager;
 }
 
 // The width and height of the banner ad that was last loaded.
@@ -88,18 +86,17 @@ typedef enum {
 
 #pragma Intialize the banner ad
 
-// Initialize a new BurstlyBannerAdView object for every zone id provided to you.
-// Do any additional setup after loading the view, typically from a nib.
--(id)initWithAppId:(NSString *)anAppId zoneId:(NSString *)aZoneId frame:(CGRect)aFrame anchor:(BurstlyAnchor)anAnchor rootViewController:(UIViewController *)aRootViewController delegate:(id<BurstlyBannerViewDelegate>)aDelegate;
+// Initialize a new BurstlyBannerAdView object for any zone id provided to you.
+- (id)initWithAppId:(NSString *)anAppId zoneId:(NSString *)aZoneId frame:(CGRect)aFrame anchor:(BurstlyAnchor)anAnchor rootViewController:(UIViewController *)aRootViewController delegate:(id<BurstlyBannerViewDelegate>)aDelegate;
 
 // NOT FOR PRODUCTION USE. Init with integration mode and a specific test network.
 - (id)initWithIntegrationModeTestNetwork:(BurstlyTestAdNetwork)aTestNetwork filterDeviceMacAddresses:(NSArray *)deviceMacAddresses frame:(CGRect)aFrame anchor:(BurstlyAnchor)anAnchor rootViewController:(UIViewController *)aRootViewController delegate:(id<BurstlyBannerViewDelegate>)aDelegate;
 
 // Loads an Ad and accepts an optional request parameter that can be set to nil.
--(void) showAd;
+- (void)showAd;
 
 // Precache a banner ad. Should be mapped to every request that loads the banner.
 // This method is typically invoked several seconds ahead of showAd.
--(void) cacheAd;
+- (void)cacheAd;
 
 @end

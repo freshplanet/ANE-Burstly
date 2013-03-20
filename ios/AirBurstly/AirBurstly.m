@@ -17,7 +17,6 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 #import "AirBurstly.h"
-#import "BurstlyAdError.h"
 #import "BurstlyAdRequest.h"
 #import "BurstlyAdUtils.h"
 #import "BurstlyBannerAdView.h"
@@ -176,7 +175,7 @@ static AirBurstly *sharedInstance = nil;
 {
     if (_interstitial)
     {
-        [_interstitial showAdWithRootViewController:self.rootViewController];
+        [_interstitial showAd];
     }
 }
 
@@ -217,7 +216,7 @@ static AirBurstly *sharedInstance = nil;
     [AirBurstly log:message];
 }
 
-- (void)burstlyBannerAdView:(BurstlyBannerAdView *)view didFailWithError:(BurstlyAdError*)error
+- (void)burstlyBannerAdView:(BurstlyBannerAdView *)view didFailWithError:(NSError *)error
 {
     NSString *message = [NSString stringWithFormat:@"Warning - Did fail to load banner. Error: %@", [error description]];
     [AirBurstly log:message];
@@ -225,6 +224,11 @@ static AirBurstly *sharedInstance = nil;
 
 
 #pragma mark - BurstlyInterstitialDelegate
+
+- (UIViewController *)viewControllerForModalPresentation:(BurstlyInterstitial *)interstitial
+{
+    return self.rootViewController;
+}
 
 - (void)burstlyInterstitial:(BurstlyInterstitial *)ad willTakeOverFullScreen:(NSString *)adNetwork
 {
@@ -264,7 +268,7 @@ static AirBurstly *sharedInstance = nil;
     [AirBurstly log:message];
 }
 
-- (void)burstlyInterstitial:(BurstlyInterstitial *)ad didFailWithError:(BurstlyAdError *)error
+- (void)burstlyInterstitial:(BurstlyInterstitial *)ad didFailWithError:(NSError *)error
 {
     NSString *message = [NSString stringWithFormat:@"Warning - Did fail to load interstitial. Error: %@", [error description]];
     [AirBurstly log:message];

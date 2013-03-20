@@ -2,7 +2,7 @@
 //  BurstlyAdUtils.h
 //  BurstlyConvenienceLayer
 //
-//  Created by abishek ashok on 10/28/12.
+//  Created by Abishek Ashok on 10/28/12.
 //  Copyright (c) 2012 Burstly. All rights reserved.
 //
 
@@ -18,7 +18,6 @@ typedef enum {
 + (NSString*)version;
 
 + (void)setLogLevel:(BurstlyLogLevel)level;
-
-+ (BurstlyLogLevel)getLogLevel;
++ (BurstlyLogLevel)logLevel;
 
 @end
