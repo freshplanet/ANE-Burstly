@@ -16,6 +16,7 @@
 		<option>-framework OpenAL</option>
         <option>-weak_framework PassKit</option>
 		<option>-framework StoreKit</option>
+        <option>-weak_framework Twitter</option>
         <option>-lsqlite3</option>
         <option>-lxml2</option>
         <option>-lz</option>

@@ -29,18 +29,18 @@ import android.widget.FrameLayout;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
-import com.burstly.conveniencelayer.Burstly;
-import com.burstly.conveniencelayer.BurstlyAnimatedBanner;
-import com.burstly.conveniencelayer.BurstlyBaseAd;
-import com.burstly.conveniencelayer.BurstlyInterstitial;
-import com.burstly.conveniencelayer.IBurstlyListener;
-import com.burstly.conveniencelayer.events.AdCacheEvent;
-import com.burstly.conveniencelayer.events.AdClickEvent;
-import com.burstly.conveniencelayer.events.AdDismissFullscreenEvent;
-import com.burstly.conveniencelayer.events.AdFailEvent;
-import com.burstly.conveniencelayer.events.AdHideEvent;
-import com.burstly.conveniencelayer.events.AdPresentFullscreenEvent;
-import com.burstly.conveniencelayer.events.AdShowEvent;
+import com.burstly.lib.conveniencelayer.Burstly;
+import com.burstly.lib.conveniencelayer.BurstlyAnimatedBanner;
+import com.burstly.lib.conveniencelayer.BurstlyBaseAd;
+import com.burstly.lib.conveniencelayer.BurstlyInterstitial;
+import com.burstly.lib.conveniencelayer.IBurstlyListener;
+import com.burstly.lib.conveniencelayer.events.AdCacheEvent;
+import com.burstly.lib.conveniencelayer.events.AdClickEvent;
+import com.burstly.lib.conveniencelayer.events.AdDismissFullscreenEvent;
+import com.burstly.lib.conveniencelayer.events.AdFailEvent;
+import com.burstly.lib.conveniencelayer.events.AdHideEvent;
+import com.burstly.lib.conveniencelayer.events.AdPresentFullscreenEvent;
+import com.burstly.lib.conveniencelayer.events.AdShowEvent;
 import com.freshplanet.burstly.functions.AirBurstlyCacheInterstitial;
 import com.freshplanet.burstly.functions.AirBurstlyGetSDKVersion;
 import com.freshplanet.burstly.functions.AirBurstlyHideBanner;
@@ -149,10 +149,7 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	
 	public Boolean isInterstitialPreCached()
 	{
-		return true;
-		
-		// This method doesn't seem reliable for now.
-		//return _interstitial.hasCachedAd();
+		return _interstitial.hasCachedAd();
 	}
 	
 	public void cacheInterstitial()

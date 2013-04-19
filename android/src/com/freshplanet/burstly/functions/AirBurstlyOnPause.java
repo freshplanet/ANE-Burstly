@@ -21,7 +21,7 @@ package com.freshplanet.burstly.functions;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
-import com.burstly.conveniencelayer.Burstly;
+import com.burstly.lib.conveniencelayer.Burstly;
 
 public class AirBurstlyOnPause implements FREFunction
 {
