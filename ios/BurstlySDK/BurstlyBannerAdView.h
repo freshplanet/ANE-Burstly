@@ -32,11 +32,11 @@
  with respect to their superview.
  */
 typedef enum {
-	kBurstlyAnchorBottom			= 0x1,
-	kBurstlyAnchorTop				= 0x2,
-	kBurstlyAnchorLeft				= 0x4,
-	kBurstlyAnchorRight             = 0x8,
-	kBurstlyAnchorCenter			= 0xF  // Equal to Anchor_Bottom | Anchor_Top | Anchor_Left | Anchor_Right
+	kBurstlyAnchorBottom			= 1,
+	kBurstlyAnchorTop				= 2,
+	kBurstlyAnchorLeft				= 4,
+	kBurstlyAnchorRight             = 8,
+	kBurstlyAnchorCenter			= 16  // Equal to Anchor_Bottom | Anchor_Top | Anchor_Left | Anchor_Right
 } BurstlyAnchor;
 
 @interface BurstlyBannerAdView : UIView {

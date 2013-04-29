@@ -63,6 +63,7 @@ typedef enum {
 {
     BurstlyTestAdNetwork _integrationModeAdNetwork;
     BOOL _integrationMode;
+    NSMutableDictionary     *_customParamsForNetworks;
 }
 
 @property (nonatomic,retain) BurstlyUserInfo *userInfo;
@@ -88,5 +89,14 @@ typedef enum {
 
 - (NSString *)integrationModeAppId;
 - (void)setIntegrationModeWithTestNetwork:(BurstlyTestAdNetwork)aTestNetwork filterDeviceMacAddresses:(NSArray *)deviceMacAddresses;
+
+// Mediated ad-networks may have additional parameters they accept. To pass these
+// parameters to them, create a dictionary object with the appropriate key-value
+// as detailed here. All networks will have access to the basic settings
+// you've set in the BurstlyUserInfo class.
+// (gender, age, zip-code, etc.).
+// Note: This feature is reserved for future use and supports only the
+// MediaBrix network at this time.
+- (void)setCustomParamsForNetwork:(NSString*)network withDictionary:(NSDictionary*)params;
 
 @end

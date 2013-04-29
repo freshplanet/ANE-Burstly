@@ -3,4 +3,4 @@
 //  Burstly
 //
 
-#define LIB_VERSION						@"1.38.0.35631"
+#define LIB_VERSION						@"1.40.0.37742"

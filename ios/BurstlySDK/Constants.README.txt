@@ -12,7 +12,7 @@
 #define SERVER_DEFAULT_HOST  [BurstlyUtils updatableString:"req.appads.com"]
 #define SERVER_HOST_MASK  [BurstlyUtils updatableString:"req%d.appads.com"]
 #define NUMBER_OF_SERVER_DNS  [BurstlyUtils updatableString:"3"]
-#define SERVER_ADDRESS_MASK				@"http://%@/"
+#define SERVER_ADDRESS_MASK  [BurstlyUtils updatableString:"http://%@/"]
 #define SERVER_CHECK_TIMEOUT			30
 #define CAPI_SERVER_DEFAULT_HOST  [BurstlyUtils updatableString:"lv.appads.com"]
 #define CAPI_SERVER_HOST_MASK  [BurstlyUtils updatableString:"lv%d.appads.com"]
@@ -33,6 +33,16 @@
 #define EVENTS_FILE_NAME				@"burstly.events"
 #define GOOGLE_ANALYTICS_ID				@"UA-12719703-6"
 #define BANNER_LOADED_NOTIFICATION      @"com.burstly.admanager.bannerloaded"
+
+
+#define DEALLOC(deallocCode)\
+- (void)dealloc {\
+    NSString *instanceInfo = [NSString stringWithFormat: @"%@[%p]", NSStringFromClass([self class]), self];\
+    LOG_DEBUG(@"Deallocation of %@ started.", instanceInfo);\
+    deallocCode\
+    [super dealloc];\
+    LOG_DEBUG(@"Deallocation of %@ finished.", instanceInfo);\
+}
 
 
 
@@ -382,8 +392,7 @@
 #define kGREYSTRIPE_SKYSCRAPER_SLOT			@"skyscraperSlot"
 #define kGREYSTRIPE_AD_WIDTH				0
 #define kGREYSTRIPE_AD_HEIGHT				0
-#define kGREYSTRIPE_DEFAULT_AD_SIZE_IPHONE	kGSAdSizeIPhoneFullScreen
-#define kGREYSTRIPE_DEFAULT_AD_SIZE_IPAD	kGSAdSizeBanner
+#define kGREYSTRIPE_DEFAULT_AD_SIZE         kGSAdSizeBanner
 
 
 // Google AdSense defines
@@ -439,6 +448,7 @@
 #define kMILLENNIAL_DEFAULT_DATA				nil
 #define kMILLENNIAL_AD_TYPE						MMBannerAdTop
 #define kMILLENNIAL_ACID                        nil
+#define kMILLENNIAL_IS_INTERSTITIAL             NO
 
 #define kMILLENNIAL_DEFAULT_WIDTH_KEY			@"adWidth"
 #define kMILLENNIAL_DEFAULT_HEIGHT_KEY			@"adHeight"
@@ -449,6 +459,7 @@
 #define kMILLENNIAL_DEFAULT_DATA_KEY			@"requestData"
 #define kMILLENNIAL_AD_TYPE_KEY					@"adType"
 #define kMILLENNIAL_ACID_KEY					@"acid"
+#define kMILLENNIAL_IS_INTERSTITIAL_KEY         @"isInterstitial"
 
 // Facebook Defines
 
@@ -507,11 +518,20 @@
 #define kFLURRY_DEFAULT_HEIGHT_IPAD				90
 #define kFLURRY_IS_INTERSTITIAL                 NO
 #define kFLURRY_HOOK                            nil
+#define kFLURRY_API                             nil
+#define kFLURRY_ADSIZE_BANNER                   1
+#define kFLURRY_ADSIZE_INTERSTITIAL             3
+#define kFLURRY_ENABLE_TEST_ADS                 NO
+#define kFLURRY_USER_COOKIES                    nil
 
 #define kFLURRY_DEFAULT_WIDTH_KEY				@"adWidth"
 #define kFLURRY_DEFAULT_HEIGHT_KEY				@"adHeight"
 #define kFLURRY_IS_INTERSTITIAL_KEY             @"isInterstitial"
 #define kFLURRY_HOOK_KEY                        @"hook"
+#define kFLURRY_API_KEY                         @"appKey"
+#define kFLURRY_ADSIZE_KEY                      @"adSize"
+#define kFLURRY_ENABLE_TEST_ADS_KEY             @"enableTestAds"
+#define kFLURRY_USER_COOKIES_KEY                @"userCookies"
 
 
 #define kINMOBI_SITE_ID							nil

@@ -8,7 +8,7 @@ Burstly SDK
 --------
 
 This ANE includes the following versions of the Burstly SDK:
-* iOS: 1.38
+* iOS: 1.40
 * Android: 1.23
 
 It only supports displaying a bottom banner and/or a fullscreen interstitial.

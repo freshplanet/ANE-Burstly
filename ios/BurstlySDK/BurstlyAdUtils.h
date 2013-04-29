@@ -6,18 +6,14 @@
 //  Copyright (c) 2012 Burstly. All rights reserved.
 //
 
+#import "BurstlyLoggerConstants.h"
 
-typedef enum {
-	BurstlyLogLevelNone	=	0,
-	BurstlyLogLevelVerbose	=	1
-} BurstlyLogLevel;
 
-@interface BurstlyAdUtils: NSObject {
-}
+@interface BurstlyAdUtils: NSObject
 
 + (NSString*)version;
 
-+ (void)setLogLevel:(BurstlyLogLevel)level;
-+ (BurstlyLogLevel)logLevel;
++ (void)setLogLevel:(AS_LogLevel)level;
++ (AS_LogLevel)logLevel;
 
 @end
