@@ -39,14 +39,14 @@
                 <pathelement location="${android.sdk}/android.jar"/>
                 <pathelement location="${flex.sdk}/lib/android/FlashRuntimeExtensions.jar"/>
                 <pathelement location="../android/libs/BurstlySDK.jar"/>
-                <pathelement location="../android/libs/ApplifierAdaptor.jar"/>
+                <pathelement location="../android/libs/ApplifierImpact_BurstlyAdaptor_1.0.4-1.jar"/>
                 <pathelement location="../android/libs/android-support-v4.jar"/>
             </classpath>
         </javac>
 
         <mkdir dir="../android/temp/zip"/>
         <unzip src="../android/libs/BurstlySDK.jar" dest="../android/temp/zip"/>
-        <unzip src="../android/libs/ApplifierAdaptor.jar" dest="../android/temp/zip"/>
+        <unzip src="../android/libs/ApplifierImpact_BurstlyAdaptor_1.0.4-1.jar" dest="../android/temp/zip"/>
         <unzip src="../android/libs/android-support-v4.jar" dest="../android/temp/zip"/>
         <copydir src="../android/temp/zip/com" dest="../android/temp/classes/com"/>
         <copydir src="../android/temp/zip/org" dest="../android/temp/classes/org"/>
