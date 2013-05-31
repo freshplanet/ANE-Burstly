@@ -18,10 +18,12 @@
 
 package com.freshplanet.burstly;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -78,7 +80,7 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 		return functionMap;	
 	}
 	
-	public void init(String appId, String bannerZoneId, String interstitialZoneId)
+	public void init(String appId, String bannerZoneId, String interstitialZoneId, String[] additionalInterstitialZoneIds)
 	{
 		if (appId == null)
 		{
@@ -99,6 +101,26 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 			_interstitial = new BurstlyInterstitial(getActivity(), interstitialZoneId, INTERSTITIAL, false);
 			_interstitial.addBurstlyListener(this);
 		}
+		
+		if (additionalInterstitialZoneIds != null)
+		{
+			_additionalInterstitials = new HashMap<String, BurstlyInterstitial>();
+			Extension.log("Info - putting new additional zones (" + Integer.toString(additionalInterstitialZoneIds.length)+")!");
+			for (int i=0; i<additionalInterstitialZoneIds.length; i++ )
+			{
+				String key = additionalInterstitialZoneIds[i];
+				if (key != null)
+				{
+					BurstlyInterstitial interstitial = new BurstlyInterstitial(getActivity(), additionalInterstitialZoneIds[i], INTERSTITIAL, false);
+					interstitial.addBurstlyListener(this);
+					_additionalInterstitials.put(key, interstitial);
+				}
+			}
+		} else
+		{
+			Extension.log("Warning - no additional Zone ids!");
+		}
+		
 		
 		Extension.log("Info - Did init with appId = " + appId + ", bannerZoneId = " + bannerZoneId + ", interstitialZoneId = " + interstitialZoneId);
 	}
@@ -124,6 +146,16 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 			_interstitial.setBurstlyUserInfo(infos);
 			_interstitial.setTargetingParameters(strInfos);
 		}
+		
+		if (_additionalInterstitials != null)
+		{
+			for (BurstlyInterstitial interstitial: _additionalInterstitials.values())
+			{
+				interstitial.setBurstlyUserInfo(infos);
+				interstitial.setTargetingParameters(strInfos);
+			}
+		}
+		
 		
 		Extension.log("Info - Did set user infos: " + strInfos);
 	}
@@ -168,6 +200,23 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 		}
 	}
 	
+	public void showInterstitialWithZoneId(String zoneId)
+	{
+		BurstlyInterstitial interstitial = null;
+		if (_additionalInterstitials != null)
+		{
+			interstitial = _additionalInterstitials.get(zoneId);
+		}
+		if (interstitial != null)
+		{
+			interstitial.showAd();
+		} else
+		{
+			Log.d("extension context", "couldnt find the interstitial");
+		}
+	}
+
+	
 	
 	// Private API
 	
@@ -177,6 +226,7 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	private ViewGroup _bannerContainer;
 	private BurstlyAnimatedBanner _banner;
 	private BurstlyInterstitial _interstitial;
+	private HashMap<String, BurstlyInterstitial> _additionalInterstitials;
 	
 	private ViewGroup getRootContainer()
 	{
@@ -251,13 +301,19 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	public void onPresentFullscreen(final BurstlyBaseAd ad, final AdPresentFullscreenEvent event)
 	{
 		Extension.log("Info - Will present fullscreen " + ad.getName());
+		
+		Boolean isRegisteredInterstitial = ad == _interstitial || (_additionalInterstitials != null && _additionalInterstitials.get(ad.getZoneId()) != null) ;
+		if (isRegisteredInterstitial)
+		{
+			dispatchStatusEventAsync("INTERSTITIAL_WILL_APPEAR", "OK");
+		}
 	}
 	
 	public void onDismissFullscreen(final BurstlyBaseAd ad, final AdDismissFullscreenEvent event)
 	{
 		Extension.log("Info - Will dismiss fullscreen " + ad.getName());
-		
-		if (ad == _interstitial)
+		Boolean isRegisteredInterstitial = ad == _interstitial || (_additionalInterstitials != null && _additionalInterstitials.get(ad.getZoneId()) != null) ;
+		if (isRegisteredInterstitial)
 		{
 			dispatchStatusEventAsync("INTERSTITIAL_WILL_DISMISS", "OK");
 		}

@@ -31,6 +31,8 @@ FREContext AirBurstlyCtx = nil;
 {
     BurstlyBannerAdView *_banner;
     BurstlyInterstitial *_interstitial;
+    NSMutableArray *_additionalInterstitials;
+    
 }
 
 - (UIViewController *)rootViewController;
@@ -75,6 +77,9 @@ static AirBurstly *sharedInstance = nil;
     _interstitial.delegate = nil;
     [_interstitial release];
     
+    NSLog(@"dealloc additional interstitials");
+    [_additionalInterstitials release];
+    
     [super dealloc];
 }
 
@@ -96,7 +101,7 @@ static AirBurstly *sharedInstance = nil;
     return [[[UIApplication sharedApplication] keyWindow] rootViewController];
 }
 
-- (void)initWithAppId:(NSString *)appId bannerZoneId:(NSString *)bannerZoneId interstitialZoneId:(NSString *)interstitialZoneId
+- (void)initWithAppId:(NSString *)appId bannerZoneId:(NSString *)bannerZoneId interstitialZoneId:(NSString *)interstitialZoneId additionalInterstitialZoneIds:(NSArray*)additionalInterstitialZoneIds
 {
     if (!appId)
     {
@@ -119,20 +124,39 @@ static AirBurstly *sharedInstance = nil;
         _interstitial = [[BurstlyInterstitial alloc] initAppId:appId zoneId:interstitialZoneId delegate:self];
     }
     
+    if (additionalInterstitialZoneIds != nil)
+    {
+        _additionalInterstitials = [[NSMutableArray arrayWithCapacity:[additionalInterstitialZoneIds count]] retain];
+        for (NSString* zoneId in additionalInterstitialZoneIds)
+        {
+            BurstlyInterstitial *interstitial = [[BurstlyInterstitial alloc] initAppId:appId zoneId:zoneId delegate:self];
+            [_additionalInterstitials addObject:interstitial];
+        }
+    }
+    
     NSString *message = [NSString stringWithFormat:@"Info - Did init with appId = %@, bannerZoneId = %@, interstitialZoneId = %@", appId, bannerZoneId, interstitialZoneId];
     [AirBurstly log:message];
 }
 
 - (void)setUserInfo:(NSString *)infos
 {
+
     if (_banner)
     {
         [_banner.adRequest setTargettingParameters:infos];
     }
-    
+
     if (_interstitial)
     {
-        [_banner.adRequest setTargettingParameters:infos];
+        [_interstitial.adRequest setTargettingParameters:infos];
+    }
+
+    if (_additionalInterstitials != nil)
+    {
+        for (BurstlyInterstitial *interstitial in _additionalInterstitials)
+        {
+            [interstitial.adRequest setTargettingParameters:infos];
+        }
     }
     
     NSString *message = [NSString stringWithFormat:@"Info - Did set user info: %@", infos];
@@ -178,6 +202,34 @@ static AirBurstly *sharedInstance = nil;
         [_interstitial showAd];
     }
 }
+
+- (void)showInterstitialWithZoneId:(NSString*) zoneId
+{
+    BurstlyInterstitial *interstitial = nil;
+    if (zoneId != nil)
+    {
+        for (BurstlyInterstitial *possibleInterstitial in _additionalInterstitials)
+        {
+            if ([possibleInterstitial.zoneId isEqualToString:zoneId])
+            {
+                interstitial = possibleInterstitial;
+                break;
+            }
+        }
+    } else
+    {
+        [AirBurstly log:@"zone id is nil"];
+    }
+    
+    if (interstitial)
+    {
+        [interstitial showAd];
+    } else
+    {
+        [AirBurstly log:@"Couldnt find interstitial"];
+    }
+}
+
 
 
 #pragma mark - BurstlyBannerViewDelegate
@@ -234,6 +286,7 @@ static AirBurstly *sharedInstance = nil;
 {
     NSString *message = [NSString stringWithFormat:@"Info - Will present fullscreen %@ interstitial", adNetwork];
     [AirBurstly log:message];
+    [AirBurstly dispatchEvent:@"INTERSTITIAL_WILL_APPEAR" withInfo:@"OK"];
 }
 
 - (void)burstlyInterstitial:(BurstlyInterstitial *)ad willDismissFullScreen:(NSString *)adNetwork
@@ -279,6 +332,46 @@ static AirBurstly *sharedInstance = nil;
 @end
 
 
+#pragma mark - Utils
+
+NSArray* getAsNSArray( FREObject array )
+{
+    
+    uint32_t stringLength;
+    uint32_t arrayLength;
+    
+    NSMutableArray *nsArray = [[NSMutableArray alloc] init];
+    if (FREGetArrayLength(array, &arrayLength) != FRE_OK)
+    {
+        arrayLength = 0;
+    }
+    
+    for (NSInteger i = arrayLength-1; i >= 0; i--)
+    {
+        // Get permission at index i. Skip this index if there's an error.
+        FREObject el;
+        if (FREGetArrayElementAt(array, i, &el) != FRE_OK)
+        {
+            continue;
+        }
+        
+        // Convert it to string. Skip this index if there's an error.
+        const uint8_t *elString;
+        if (FREGetObjectAsUTF8(el, &stringLength, &elString) != FRE_OK)
+        {
+            continue;
+        }
+        NSString *nsString = [NSString stringWithUTF8String:(char*)elString];
+        
+        // Add the element to the array
+        [nsArray addObject:nsString];
+    }
+    
+    return nsArray;
+    
+}
+
+
 #pragma mark - C interface
 
 DEFINE_ANE_FUNCTION(AirBurstlyInit)
@@ -306,7 +399,13 @@ DEFINE_ANE_FUNCTION(AirBurstlyInit)
         interstitialZoneId = [NSString stringWithUTF8String:(char *)interstitialZoneIdString];
     }
     
-    [[AirBurstly sharedInstance] initWithAppId:appId bannerZoneId:bannerZoneId interstitialZoneId:interstitialZoneId];
+    NSArray *additionalInterstitialZoneIds = nil;
+    if (argc > 3) // means we have more interstitials
+    {
+        additionalInterstitialZoneIds = getAsNSArray(argv[3]);
+    }
+    
+    [[AirBurstly sharedInstance] initWithAppId:appId bannerZoneId:bannerZoneId interstitialZoneId:interstitialZoneId additionalInterstitialZoneIds:additionalInterstitialZoneIds];
     
     return nil;
 }
@@ -387,7 +486,20 @@ DEFINE_ANE_FUNCTION(AirBurstlyCacheInterstitial)
 
 DEFINE_ANE_FUNCTION(AirBurstlyShowInterstitial)
 {
-    [[AirBurstly sharedInstance] showInterstitial];
+    if (argc > 0)
+    {
+        uint32_t stringLength;
+        NSString *interstitialZoneId = nil;
+        const uint8_t *interstitialZoneIdString;
+        if (FREGetObjectAsUTF8(argv[0], &stringLength, &interstitialZoneIdString) == FRE_OK)
+        {
+            interstitialZoneId = [NSString stringWithUTF8String:(char *)interstitialZoneIdString];
+            [[AirBurstly sharedInstance] showInterstitialWithZoneId:interstitialZoneId];
+        }
+    } else
+    {
+        [[AirBurstly sharedInstance] showInterstitial]; 
+    }
     return nil;
 }
 

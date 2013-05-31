@@ -18,6 +18,9 @@
 
 package com.freshplanet.burstly.functions;
 
+import android.util.Log;
+
+import com.adobe.fre.FREArray;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
@@ -31,11 +34,33 @@ public class AirBurstlyInit implements FREFunction
 		String appId = null;
 		String bannerZoneId = null;
 		String interstitialZoneId = null;
+		String[] additionalInterstitialZoneIds = null;
+		
 		try
 		{
 			appId = args[0].getAsString();
 			bannerZoneId = args[1].getAsString();
 			interstitialZoneId = args[2].getAsString();
+			
+			if (args.length >= 4)
+			{
+				FREArray additionalInterstitialZoneIdsArray = (FREArray)args[3];
+				
+				long arrayLength = additionalInterstitialZoneIdsArray.getLength();
+				additionalInterstitialZoneIds = new String[(int)arrayLength];
+
+				for (int i = 0; i < arrayLength; i++)
+				{
+					try
+					{
+						additionalInterstitialZoneIds[i] =  additionalInterstitialZoneIdsArray.getObjectAt((long) i).getAsString();
+					}
+					catch (Exception e)
+					{
+						additionalInterstitialZoneIds[i] = null;
+					}
+				}
+			}
 		}
 		catch (Exception e)
 		{
@@ -44,7 +69,7 @@ public class AirBurstlyInit implements FREFunction
 			return null;
 		}
 		
-		Extension.context.init(appId, bannerZoneId, interstitialZoneId);
+		Extension.context.init(appId, bannerZoneId, interstitialZoneId, additionalInterstitialZoneIds);
 		
 		return null;
 	}

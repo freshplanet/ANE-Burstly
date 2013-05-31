@@ -28,7 +28,7 @@
 + (void)dispatchEvent:(NSString *)eventName withInfo:(NSString *)info;
 + (void)log:(NSString *)message;
 
-- (void)initWithAppId:(NSString *)appId bannerZoneId:(NSString *)bannerZoneId interstitialZoneId:(NSString *)interstitialZoneId;
+- (void)initWithAppId:(NSString *)appId bannerZoneId:(NSString *)bannerZoneId interstitialZoneId:(NSString *)interstitialZoneId additionalInterstitialZoneIds:(NSArray*)additionalInterstitialZoneIds;
 - (void)setUserInfo:(NSString *)infos;
 - (void)showBanner;
 - (void)hideBanner;
