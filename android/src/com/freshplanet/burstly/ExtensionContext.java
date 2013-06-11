@@ -184,6 +184,22 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 		return _interstitial.hasCachedAd();
 	}
 	
+	public void cacheInterstitialWithZoneId(String zoneId)
+	{
+		BurstlyInterstitial interstitial = null;
+		if (_additionalInterstitials != null)
+		{
+			interstitial = _additionalInterstitials.get(zoneId);
+		}
+		if (interstitial != null)
+		{
+			interstitial.cacheAd();
+		} else
+		{
+			Log.d("extension context", "couldnt find the interstitial");
+		}
+	}
+	
 	public void cacheInterstitial()
 	{
 		if (_interstitial != null)
@@ -296,6 +312,7 @@ public class ExtensionContext extends FREContext implements IBurstlyListener
 	{
 		String network = event.getClickedNetwork() != null ? event.getClickedNetwork() : "unknown network";
 		Extension.log("Info - Did click " + network + " " + ad.getName());
+		dispatchStatusEventAsync("INTERSTITIAL_WAS_CLICKED", "OK");
 	}
 	
 	public void onPresentFullscreen(final BurstlyBaseAd ad, final AdPresentFullscreenEvent event)

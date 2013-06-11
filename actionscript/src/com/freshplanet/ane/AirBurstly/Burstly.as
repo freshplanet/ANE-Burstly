@@ -111,11 +111,17 @@ package com.freshplanet.ane.AirBurstly
 			return _context.call("AirBurstlyIsInterstitialPreCached");
 		}
 		
-		public function cacheInterstitial() : void
+		public function cacheInterstitial(additionalZoneId : String = null) : void
 		{
 			if (!isSupported) return;
 			
-			_context.call("AirBurstlyCacheInterstitial");
+			if (additionalZoneId != null)
+			{
+				_context.call("AirBurstlyCacheInterstitial", additionalZoneId);
+			} else
+			{
+				_context.call("AirBurstlyCacheInterstitial");
+			}
 		}
 		
 		public function showInterstitial(additionalZoneId : String = null) : void
@@ -165,7 +171,7 @@ package com.freshplanet.ane.AirBurstly
 			{
 				log(event.level);
 			}
-			else if ([BurstlyEvent.INTERSTITIAL_WILL_DISMISS, BurstlyEvent.INTERSTITIAL_DID_FAIL, BurstlyEvent.INTERSTITIAL_WILL_APPEAR].indexOf(event.code) > -1)
+			else if ([BurstlyEvent.INTERSTITIAL_WAS_CLICKED, BurstlyEvent.INTERSTITIAL_WILL_DISMISS, BurstlyEvent.INTERSTITIAL_DID_FAIL, BurstlyEvent.INTERSTITIAL_WILL_APPEAR].indexOf(event.code) > -1)
 			{
 				dispatchEvent(new BurstlyEvent(event.code));
 			}

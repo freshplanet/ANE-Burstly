@@ -195,6 +195,33 @@ static AirBurstly *sharedInstance = nil;
     }
 }
 
+- (void)cacheInterstitialWithZoneId:(NSString*) zoneId
+{
+    BurstlyInterstitial *interstitial = nil;
+    if (zoneId != nil)
+    {
+        for (BurstlyInterstitial *possibleInterstitial in _additionalInterstitials)
+        {
+            if ([possibleInterstitial.zoneId isEqualToString:zoneId])
+            {
+                interstitial = possibleInterstitial;
+                break;
+            }
+        }
+    } else
+    {
+        [AirBurstly log:@"zone id is nil"];
+    }
+    
+    if (interstitial)
+    {
+        [interstitial cacheAd];
+    } else
+    {
+        [AirBurstly log:@"Couldnt find interstitial"];
+    }
+}
+
 - (void)showInterstitial
 {
     if (_interstitial)
@@ -319,6 +346,8 @@ static AirBurstly *sharedInstance = nil;
 {
     NSString *message = [NSString stringWithFormat:@"Info - Did click %@ interstitial", adNetwork];
     [AirBurstly log:message];
+    [AirBurstly dispatchEvent:@"INTERSTITIAL_WAS_CLICKED" withInfo:@"OK"];
+
 }
 
 - (void)burstlyInterstitial:(BurstlyInterstitial *)ad didFailWithError:(NSError *)error
@@ -480,7 +509,20 @@ DEFINE_ANE_FUNCTION(AirBurstlyIsInterstitialPreCached)
 
 DEFINE_ANE_FUNCTION(AirBurstlyCacheInterstitial)
 {
-    [[AirBurstly sharedInstance] cacheInterstitial];
+    if (argc > 0)
+    {
+        uint32_t stringLength;
+        NSString *interstitialZoneId = nil;
+        const uint8_t *interstitialZoneIdString;
+        if (FREGetObjectAsUTF8(argv[0], &stringLength, &interstitialZoneIdString) == FRE_OK)
+        {
+            interstitialZoneId = [NSString stringWithUTF8String:(char *)interstitialZoneIdString];
+            [[AirBurstly sharedInstance] cacheInterstitialWithZoneId:interstitialZoneId];
+        }
+    } else
+    {
+        [[AirBurstly sharedInstance] cacheInterstitial];
+    }
     return nil;
 }
 
