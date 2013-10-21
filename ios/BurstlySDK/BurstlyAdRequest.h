@@ -1,13 +1,15 @@
 //
-//  BurstlyAdRequest.h
-//  BurstlyConvenienceLayer
+// BurstlyAdRequest.h
+// Burstly SDK
 //
-//  Created by Abishek Ashok on 7/10/12.
-//  Copyright (c) 2012 Burstly. All rights reserved.
+// Copyright 2013 Burstly Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "BurstlyUserInfo.h"
+
+FOUNDATION_EXPORT NSString *const BurstlyInfoNetwork;
+FOUNDATION_EXPORT NSString *const BurstlyInfoError;
 
 // Use BurstlyTestAdNetwork to force requests to point to 
 // a specific ad network that would otherwise be mediated.
@@ -22,7 +24,6 @@ typedef enum {
     kBurstlyTestMillennial,
     kBurstlyTestRewards
 } BurstlyTestAdNetwork;
-
 
 extern NSString * const BurstlyErrorDomain;
 
@@ -63,7 +64,6 @@ typedef enum {
 {
     BurstlyTestAdNetwork _integrationModeAdNetwork;
     BOOL _integrationMode;
-    NSMutableDictionary     *_customParamsForNetworks;
 }
 
 @property (nonatomic,retain) BurstlyUserInfo *userInfo;
@@ -75,7 +75,7 @@ typedef enum {
 // - (NSString *)pubTargeting {
 //    return @"gender='m',age=21";
 // }
-@property (nonatomic, retain) NSString *targettingParameters;
+@property (nonatomic, retain) NSString *targetingParameters;
 
 // Used to transmit custom creative-specific data key-value pairs
 // to customize landing page URLs back to the ad server. This string 
@@ -84,11 +84,15 @@ typedef enum {
 //  (must be single-quote delimited) values.
 @property (nonatomic, retain) NSString *adParameters;
 
+@property (nonatomic, readwrite) CGSize bannerSize;
+
+@property (nonatomic, readwrite) CGSize bannerSizeRange;
+
 // Returns an auto-released BurstlyAdRequest
 + (BurstlyAdRequest *)request;
 
 - (NSString *)integrationModeAppId;
-- (void)setIntegrationModeWithTestNetwork:(BurstlyTestAdNetwork)aTestNetwork filterDeviceMacAddresses:(NSArray *)deviceMacAddresses;
+- (void)setIntegrationModeWithTestNetwork:(BurstlyTestAdNetwork)aTestNetwork filterAdvertisingIdentifiers:(NSArray *)advertisingIdentifiers;
 
 // Mediated ad-networks may have additional parameters they accept. To pass these
 // parameters to them, create a dictionary object with the appropriate key-value

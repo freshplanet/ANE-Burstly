@@ -1,0 +1,19 @@
+author:=Sandra Leon
+email:=sleon@burstly.com
+timestamp:=20131018183418
+buildInOne:=true
+isSeparate:=false
+version:=release 2.5.0.46949
+
+local_include:=Burstly_millennial_Adaptor Burstly_inmobi_Adaptor BurstlyCore TestFlight/1.2.6 InMobi/3.7.0 BurstlyInstalledAppsTracker BurstlyJSONParser Millennial/5.1.2 BurstlyAdNetwork Burstly_greystripe_Adaptor Burstly_admob_Adaptor AdMob/6.4.2 BurstlyCurrency BurstlyTestFlightWrapper BurstlyCommon Greystripe/4.2.1 Burstly_iad_Adaptor Burstly_burstly_Adaptor BurstlyDownloadTracker
+
+arch:=armv7  armv7s  i386 
+type:=release
+thumb:=thumb
+compiler:=llvm
+adHost:=req.appads.com
+adHostMask:=req%d.appads.com
+adHostNumber:=3
+currencyHost:=lv.appads.com
+currencyHostMask:=lv%d.appads.com
+currencyHostNumber:=3

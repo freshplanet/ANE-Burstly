@@ -17,26 +17,7 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 #import "FlashRuntimeExtensions.h"
-#import "BurstlyAdRequest.h"
-#import "BurstlyBannerViewDelegate.h"
-#import "BurstlyInterstitialDelegate.h"
-
-@interface AirBurstly : NSObject <BurstlyBannerViewDelegate, BurstlyInterstitialDelegate>
-
-+ (AirBurstly *)sharedInstance;
-
-+ (void)dispatchEvent:(NSString *)eventName withInfo:(NSString *)info;
-+ (void)log:(NSString *)message;
-
-- (void)initWithAppId:(NSString *)appId bannerZoneId:(NSString *)bannerZoneId interstitialZoneId:(NSString *)interstitialZoneId;
-- (void)setUserInfo:(NSString *)infos;
-- (void)showBanner;
-- (void)hideBanner;
-- (BOOL)isInterstitialPreCached;
-- (void)cacheInterstitial;
-- (void)showInterstitial;
-
-@end
+#import "FPANEUtils.h"
 
 
 // C interface

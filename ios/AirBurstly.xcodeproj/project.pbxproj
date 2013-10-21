@@ -9,7 +9,12 @@
 /* Begin PBXBuildFile section */
 		39324C20168CAD7F009F0A6D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39324C1F168CAD7F009F0A6D /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		39324C22168CADA8009F0A6D /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39324C21168CADA8009F0A6D /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		4AF5AE64172F005000015D93 /* libBurstly.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF5AE60172F005000015D93 /* libBurstly.a */; };
+		FA17542C180DBFEF002DC69C /* FPANEUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FA17542B180DBFEF002DC69C /* FPANEUtils.m */; };
+		FA17542F180DD1DB002DC69C /* AirBurstlyBannerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA17542E180DD1DB002DC69C /* AirBurstlyBannerDelegate.m */; };
+		FA175432180DD36C002DC69C /* AirBurstlyInterstitialDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA175431180DD36C002DC69C /* AirBurstlyInterstitialDelegate.m */; };
+		FAC5E7F1180DA57E00A3F15D /* libBurstly.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC5E7F0180DA57E00A3F15D /* libBurstly.a */; };
+		FAC5E7F3180DA5A900A3F15D /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC5E7F2180DA5A900A3F15D /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		FAC5E7F5180DA5D800A3F15D /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC5E7F4180DA5D800A3F15D /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FAD66E7515D2C21A00BAA656 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD66E7415D2C21A00BAA656 /* Foundation.framework */; };
 		FAD66E7A15D2C21A00BAA656 /* AirBurstly.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FAD66E7915D2C21A00BAA656 /* AirBurstly.h */; };
 		FAD66E7C15D2C21A00BAA656 /* AirBurstly.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD66E7B15D2C21A00BAA656 /* AirBurstly.m */; };
@@ -57,31 +62,38 @@
 /* Begin PBXFileReference section */
 		39324C1F168CAD7F009F0A6D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		39324C21168CADA8009F0A6D /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
-		4AF5AE48172EFFD600015D93 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
-		4AF5AE4B172F005000015D93 /* Burstly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Burstly.h; sourceTree = "<group>"; };
-		4AF5AE4C172F005000015D93 /* Burstly_FRESHPLANET_iOS_W_MBRIX.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Burstly_FRESHPLANET_iOS_W_MBRIX.txt; sourceTree = "<group>"; };
-		4AF5AE4D172F005000015D93 /* BurstlyAdRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyAdRequest.h; sourceTree = "<group>"; };
-		4AF5AE4E172F005000015D93 /* BurstlyAdUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyAdUtils.h; sourceTree = "<group>"; };
-		4AF5AE4F172F005000015D93 /* BurstlyBannerAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyBannerAdView.h; sourceTree = "<group>"; };
-		4AF5AE50172F005000015D93 /* BurstlyBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyBannerViewDelegate.h; sourceTree = "<group>"; };
-		4AF5AE51172F005000015D93 /* BurstlyCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyCurrency.h; sourceTree = "<group>"; };
-		4AF5AE52172F005000015D93 /* BurstlyCurrencyUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyCurrencyUpdateInfo.h; sourceTree = "<group>"; };
-		4AF5AE53172F005000015D93 /* BurstlyDownloadTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyDownloadTracker.h; sourceTree = "<group>"; };
-		4AF5AE54172F005000015D93 /* BurstlyInstalledAppsTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyInstalledAppsTracker.h; sourceTree = "<group>"; };
-		4AF5AE55172F005000015D93 /* BurstlyInstalledAppsTrackerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyInstalledAppsTrackerDelegate.h; sourceTree = "<group>"; };
-		4AF5AE56172F005000015D93 /* BurstlyInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyInterstitial.h; sourceTree = "<group>"; };
-		4AF5AE57172F005000015D93 /* BurstlyInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyInterstitialDelegate.h; sourceTree = "<group>"; };
-		4AF5AE58172F005000015D93 /* BurstlyLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyLogger.h; sourceTree = "<group>"; };
-		4AF5AE59172F005000015D93 /* BurstlyLoggerConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyLoggerConstants.h; sourceTree = "<group>"; };
-		4AF5AE5B172F005000015D93 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKResources.bundle; sourceTree = "<group>"; };
-		4AF5AE5C172F005000015D93 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
-		4AF5AE5D172F005000015D93 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
-		4AF5AE5E172F005000015D93 /* BurstlyUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyUserInfo.h; sourceTree = "<group>"; };
-		4AF5AE5F172F005000015D93 /* Constants.README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Constants.README.txt; sourceTree = "<group>"; };
-		4AF5AE60172F005000015D93 /* libBurstly.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBurstly.a; sourceTree = "<group>"; };
-		4AF5AE61172F005000015D93 /* OAIAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAIAdManager.h; sourceTree = "<group>"; };
-		4AF5AE62172F005000015D93 /* OAIAdManagerDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAIAdManagerDelegateProtocol.h; sourceTree = "<group>"; };
-		4AF5AE63172F005000015D93 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		4AF5AE48172EFFD600015D93 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlashRuntimeExtensions.h; path = ../FlashRuntimeExtensions.h; sourceTree = "<group>"; };
+		FA17542A180DBFEF002DC69C /* FPANEUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPANEUtils.h; sourceTree = SOURCE_ROOT; };
+		FA17542B180DBFEF002DC69C /* FPANEUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPANEUtils.m; sourceTree = SOURCE_ROOT; };
+		FA17542D180DD1DB002DC69C /* AirBurstlyBannerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirBurstlyBannerDelegate.h; sourceTree = "<group>"; };
+		FA17542E180DD1DB002DC69C /* AirBurstlyBannerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirBurstlyBannerDelegate.m; sourceTree = "<group>"; };
+		FA175430180DD36C002DC69C /* AirBurstlyInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirBurstlyInterstitialDelegate.h; sourceTree = "<group>"; };
+		FA175431180DD36C002DC69C /* AirBurstlyInterstitialDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirBurstlyInterstitialDelegate.m; sourceTree = "<group>"; };
+		FAC5E7D6180DA57E00A3F15D /* OAIAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAIAdManager.h; sourceTree = "<group>"; };
+		FAC5E7D7180DA57E00A3F15D /* OAIAdManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAIAdManagerDelegate.h; sourceTree = "<group>"; };
+		FAC5E7D9180DA57E00A3F15D /* BurstlyAdBannerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyAdBannerDelegate.h; sourceTree = "<group>"; };
+		FAC5E7DA180DA57E00A3F15D /* BurstlyAdBannerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyAdBannerProtocol.h; sourceTree = "<group>"; };
+		FAC5E7DB180DA57E00A3F15D /* BurstlyAdInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyAdInterstitialDelegate.h; sourceTree = "<group>"; };
+		FAC5E7DC180DA57E00A3F15D /* BurstlyAdInterstitialProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyAdInterstitialProtocol.h; sourceTree = "<group>"; };
+		FAC5E7DD180DA57E00A3F15D /* BurstlyAdNetworkAdaptorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyAdNetworkAdaptorProtocol.h; sourceTree = "<group>"; };
+		FAC5E7DF180DA57E00A3F15D /* BurstlyCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyCurrency.h; sourceTree = "<group>"; };
+		FAC5E7E0180DA57E00A3F15D /* BurstlyCurrencyUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyCurrencyUpdateInfo.h; sourceTree = "<group>"; };
+		FAC5E7E2180DA57E00A3F15D /* BurstlyDownloadTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyDownloadTracker.h; sourceTree = "<group>"; };
+		FAC5E7E3180DA57E00A3F15D /* BurstlyInstalledAppsTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyInstalledAppsTracker.h; sourceTree = "<group>"; };
+		FAC5E7E4180DA57E00A3F15D /* BurstlyInstalledAppsTrackerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyInstalledAppsTrackerDelegate.h; sourceTree = "<group>"; };
+		FAC5E7E6180DA57E00A3F15D /* BurstlyAdPlacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyAdPlacement.h; sourceTree = "<group>"; };
+		FAC5E7E7180DA57E00A3F15D /* BurstlyAdRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyAdRequest.h; sourceTree = "<group>"; };
+		FAC5E7E8180DA57E00A3F15D /* BurstlyAdUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyAdUtils.h; sourceTree = "<group>"; };
+		FAC5E7E9180DA57E00A3F15D /* BurstlyAnchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyAnchor.h; sourceTree = "<group>"; };
+		FAC5E7EA180DA57E00A3F15D /* BurstlyBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyBanner.h; sourceTree = "<group>"; };
+		FAC5E7EB180DA57E00A3F15D /* BurstlyInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyInterstitial.h; sourceTree = "<group>"; };
+		FAC5E7EC180DA57E00A3F15D /* BurstlyInterstitialCloseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyInterstitialCloseDelegate.h; sourceTree = "<group>"; };
+		FAC5E7ED180DA57E00A3F15D /* BurstlyInterstitialDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyInterstitialDecorator.h; sourceTree = "<group>"; };
+		FAC5E7EE180DA57E00A3F15D /* BurstlyLoggerConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyLoggerConstants.h; sourceTree = "<group>"; };
+		FAC5E7EF180DA57E00A3F15D /* BurstlyUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyUserInfo.h; sourceTree = "<group>"; };
+		FAC5E7F0180DA57E00A3F15D /* libBurstly.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBurstly.a; sourceTree = "<group>"; };
+		FAC5E7F2180DA5A900A3F15D /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		FAC5E7F4180DA5D800A3F15D /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		FAD66E7115D2C21A00BAA656 /* libAirBurstly.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAirBurstly.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD66E7415D2C21A00BAA656 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FAD66E7815D2C21A00BAA656 /* AirBurstly-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AirBurstly-Prefix.pch"; sourceTree = "<group>"; };
@@ -120,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAC5E7F3180DA5A900A3F15D /* Accounts.framework in Frameworks */,
 				FAD66EAD15D2F62600BAA656 /* AddressBook.framework in Frameworks */,
 				FAD66EAE15D2F62600BAA656 /* AddressBookUI.framework in Frameworks */,
 				39324C20168CAD7F009F0A6D /* AdSupport.framework in Frameworks */,
@@ -134,6 +147,10 @@
 				FAD66EB715D2F62600BAA656 /* EventKitUI.framework in Frameworks */,
 				FAD66E7515D2C21A00BAA656 /* Foundation.framework in Frameworks */,
 				FAD66EB815D2F62600BAA656 /* iAd.framework in Frameworks */,
+				FAC5E7F1180DA57E00A3F15D /* libBurstly.a in Frameworks */,
+				FAD66EC515D2F63000BAA656 /* libsqlite3.dylib in Frameworks */,
+				FAD66EC715D2F63900BAA656 /* libxml2.dylib in Frameworks */,
+				FAD66EC915D2F63F00BAA656 /* libz.dylib in Frameworks */,
 				FAD66EB915D2F62600BAA656 /* MapKit.framework in Frameworks */,
 				FAD66EBA15D2F62600BAA656 /* MediaPlayer.framework in Frameworks */,
 				FAD66EBB15D2F62600BAA656 /* MessageUI.framework in Frameworks */,
@@ -145,54 +162,82 @@
 				FAD66EC015D2F62600BAA656 /* Security.framework in Frameworks */,
 				FAD66EC115D2F62600BAA656 /* StoreKit.framework in Frameworks */,
 				FAD66EC215D2F62600BAA656 /* SystemConfiguration.framework in Frameworks */,
+				FAC5E7F5180DA5D800A3F15D /* Twitter.framework in Frameworks */,
 				FAD66EC315D2F62600BAA656 /* UIKit.framework in Frameworks */,
-				FAD66EC515D2F63000BAA656 /* libsqlite3.dylib in Frameworks */,
-				FAD66EC715D2F63900BAA656 /* libxml2.dylib in Frameworks */,
-				FAD66EC915D2F63F00BAA656 /* libz.dylib in Frameworks */,
-				4AF5AE64172F005000015D93 /* libBurstly.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4AF5AE4A172F005000015D93 /* BurstlySDK */ = {
+		FAC5E7D3180DA57E00A3F15D /* BurstlySDK */ = {
 			isa = PBXGroup;
 			children = (
-				4AF5AE4B172F005000015D93 /* Burstly.h */,
-				4AF5AE4C172F005000015D93 /* Burstly_FRESHPLANET_iOS_W_MBRIX.txt */,
-				4AF5AE4D172F005000015D93 /* BurstlyAdRequest.h */,
-				4AF5AE4E172F005000015D93 /* BurstlyAdUtils.h */,
-				4AF5AE4F172F005000015D93 /* BurstlyBannerAdView.h */,
-				4AF5AE50172F005000015D93 /* BurstlyBannerViewDelegate.h */,
-				4AF5AE51172F005000015D93 /* BurstlyCurrency.h */,
-				4AF5AE52172F005000015D93 /* BurstlyCurrencyUpdateInfo.h */,
-				4AF5AE53172F005000015D93 /* BurstlyDownloadTracker.h */,
-				4AF5AE54172F005000015D93 /* BurstlyInstalledAppsTracker.h */,
-				4AF5AE55172F005000015D93 /* BurstlyInstalledAppsTrackerDelegate.h */,
-				4AF5AE56172F005000015D93 /* BurstlyInterstitial.h */,
-				4AF5AE57172F005000015D93 /* BurstlyInterstitialDelegate.h */,
-				4AF5AE58172F005000015D93 /* BurstlyLogger.h */,
-				4AF5AE59172F005000015D93 /* BurstlyLoggerConstants.h */,
-				4AF5AE5A172F005000015D93 /* BurstlyResources */,
-				4AF5AE5E172F005000015D93 /* BurstlyUserInfo.h */,
-				4AF5AE5F172F005000015D93 /* Constants.README.txt */,
-				4AF5AE60172F005000015D93 /* libBurstly.a */,
-				4AF5AE61172F005000015D93 /* OAIAdManager.h */,
-				4AF5AE62172F005000015D93 /* OAIAdManagerDelegateProtocol.h */,
-				4AF5AE63172F005000015D93 /* version.h */,
+				FAC5E7D4180DA57E00A3F15D /* AddOns */,
+				FAC5E7E6180DA57E00A3F15D /* BurstlyAdPlacement.h */,
+				FAC5E7E7180DA57E00A3F15D /* BurstlyAdRequest.h */,
+				FAC5E7E8180DA57E00A3F15D /* BurstlyAdUtils.h */,
+				FAC5E7E9180DA57E00A3F15D /* BurstlyAnchor.h */,
+				FAC5E7EA180DA57E00A3F15D /* BurstlyBanner.h */,
+				FAC5E7EB180DA57E00A3F15D /* BurstlyInterstitial.h */,
+				FAC5E7EC180DA57E00A3F15D /* BurstlyInterstitialCloseDelegate.h */,
+				FAC5E7ED180DA57E00A3F15D /* BurstlyInterstitialDecorator.h */,
+				FAC5E7EE180DA57E00A3F15D /* BurstlyLoggerConstants.h */,
+				FAC5E7EF180DA57E00A3F15D /* BurstlyUserInfo.h */,
+				FAC5E7F0180DA57E00A3F15D /* libBurstly.a */,
 			);
 			path = BurstlySDK;
 			sourceTree = "<group>";
 		};
-		4AF5AE5A172F005000015D93 /* BurstlyResources */ = {
+		FAC5E7D4180DA57E00A3F15D /* AddOns */ = {
 			isa = PBXGroup;
 			children = (
-				4AF5AE5B172F005000015D93 /* FacebookSDKResources.bundle */,
-				4AF5AE5C172F005000015D93 /* FBDialog.bundle */,
-				4AF5AE5D172F005000015D93 /* FBUserSettingsViewResources.bundle */,
+				FAC5E7D5180DA57E00A3F15D /* Deprecated */,
+				FAC5E7D8180DA57E00A3F15D /* PartnerIntegration */,
+				FAC5E7DE180DA57E00A3F15D /* Rewards */,
+				FAC5E7E1180DA57E00A3F15D /* Tracking */,
 			);
-			path = BurstlyResources;
+			path = AddOns;
+			sourceTree = "<group>";
+		};
+		FAC5E7D5180DA57E00A3F15D /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				FAC5E7D6180DA57E00A3F15D /* OAIAdManager.h */,
+				FAC5E7D7180DA57E00A3F15D /* OAIAdManagerDelegate.h */,
+			);
+			path = Deprecated;
+			sourceTree = "<group>";
+		};
+		FAC5E7D8180DA57E00A3F15D /* PartnerIntegration */ = {
+			isa = PBXGroup;
+			children = (
+				FAC5E7D9180DA57E00A3F15D /* BurstlyAdBannerDelegate.h */,
+				FAC5E7DA180DA57E00A3F15D /* BurstlyAdBannerProtocol.h */,
+				FAC5E7DB180DA57E00A3F15D /* BurstlyAdInterstitialDelegate.h */,
+				FAC5E7DC180DA57E00A3F15D /* BurstlyAdInterstitialProtocol.h */,
+				FAC5E7DD180DA57E00A3F15D /* BurstlyAdNetworkAdaptorProtocol.h */,
+			);
+			path = PartnerIntegration;
+			sourceTree = "<group>";
+		};
+		FAC5E7DE180DA57E00A3F15D /* Rewards */ = {
+			isa = PBXGroup;
+			children = (
+				FAC5E7DF180DA57E00A3F15D /* BurstlyCurrency.h */,
+				FAC5E7E0180DA57E00A3F15D /* BurstlyCurrencyUpdateInfo.h */,
+			);
+			path = Rewards;
+			sourceTree = "<group>";
+		};
+		FAC5E7E1180DA57E00A3F15D /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				FAC5E7E2180DA57E00A3F15D /* BurstlyDownloadTracker.h */,
+				FAC5E7E3180DA57E00A3F15D /* BurstlyInstalledAppsTracker.h */,
+				FAC5E7E4180DA57E00A3F15D /* BurstlyInstalledAppsTrackerDelegate.h */,
+			);
+			path = Tracking;
 			sourceTree = "<group>";
 		};
 		FAD66E6615D2C21A00BAA656 = {
@@ -200,9 +245,6 @@
 			children = (
 				FAD66E7615D2C21A00BAA656 /* AirBurstly */,
 				FAD66E7315D2C21A00BAA656 /* Frameworks */,
-				FAD66EC415D2F63000BAA656 /* libsqlite3.dylib */,
-				FAD66EC615D2F63900BAA656 /* libxml2.dylib */,
-				FAD66EC815D2F63F00BAA656 /* libz.dylib */,
 				FAD66E7215D2C21A00BAA656 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -218,8 +260,8 @@
 		FAD66E7315D2C21A00BAA656 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4AF5AE4A172F005000015D93 /* BurstlySDK */,
-				4AF5AE48172EFFD600015D93 /* FlashRuntimeExtensions.h */,
+				FAC5E7D3180DA57E00A3F15D /* BurstlySDK */,
+				FAC5E7F2180DA5A900A3F15D /* Accounts.framework */,
 				FAD66E9615D2F62600BAA656 /* AddressBook.framework */,
 				FAD66E9715D2F62600BAA656 /* AddressBookUI.framework */,
 				39324C1F168CAD7F009F0A6D /* AdSupport.framework */,
@@ -234,6 +276,9 @@
 				FAD66EA015D2F62600BAA656 /* EventKitUI.framework */,
 				FAD66E7415D2C21A00BAA656 /* Foundation.framework */,
 				FAD66EA115D2F62600BAA656 /* iAd.framework */,
+				FAD66EC415D2F63000BAA656 /* libsqlite3.dylib */,
+				FAD66EC615D2F63900BAA656 /* libxml2.dylib */,
+				FAD66EC815D2F63F00BAA656 /* libz.dylib */,
 				FAD66EA215D2F62600BAA656 /* MapKit.framework */,
 				FAD66EA315D2F62600BAA656 /* MediaPlayer.framework */,
 				FAD66EA415D2F62600BAA656 /* MessageUI.framework */,
@@ -245,6 +290,7 @@
 				FAD66EA915D2F62600BAA656 /* Security.framework */,
 				FAD66EAA15D2F62600BAA656 /* StoreKit.framework */,
 				FAD66EAB15D2F62600BAA656 /* SystemConfiguration.framework */,
+				FAC5E7F4180DA5D800A3F15D /* Twitter.framework */,
 				FAD66EAC15D2F62600BAA656 /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -255,6 +301,10 @@
 			children = (
 				FAD66E7915D2C21A00BAA656 /* AirBurstly.h */,
 				FAD66E7B15D2C21A00BAA656 /* AirBurstly.m */,
+				FA17542D180DD1DB002DC69C /* AirBurstlyBannerDelegate.h */,
+				FA17542E180DD1DB002DC69C /* AirBurstlyBannerDelegate.m */,
+				FA175430180DD36C002DC69C /* AirBurstlyInterstitialDelegate.h */,
+				FA175431180DD36C002DC69C /* AirBurstlyInterstitialDelegate.m */,
 				FAD66E7715D2C21A00BAA656 /* Supporting Files */,
 			);
 			path = AirBurstly;
@@ -264,6 +314,9 @@
 			isa = PBXGroup;
 			children = (
 				FAD66E7815D2C21A00BAA656 /* AirBurstly-Prefix.pch */,
+				4AF5AE48172EFFD600015D93 /* FlashRuntimeExtensions.h */,
+				FA17542A180DBFEF002DC69C /* FPANEUtils.h */,
+				FA17542B180DBFEF002DC69C /* FPANEUtils.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -319,6 +372,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA17542F180DD1DB002DC69C /* AirBurstlyBannerDelegate.m in Sources */,
+				FA17542C180DBFEF002DC69C /* FPANEUtils.m in Sources */,
+				FA175432180DD36C002DC69C /* AirBurstlyInterstitialDelegate.m in Sources */,
 				FAD66E7C15D2C21A00BAA656 /* AirBurstly.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,40 +465,48 @@
 		FAD66E8015D2C21A00BAA656 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/AirBurstly.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirBurstly/AirBurstly-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/burstly-sdk\"",
-					"\"$(SRCROOT)/inmobi-sdk\"",
-					"\"$(SRCROOT)/burstly-sdk-old\"",
-					"\"$(SRCROOT)/burstly-sdk-new\"",
-					"\"$(SRCROOT)/BurstlySDK\"",
+					"\\\"$(SRCROOT)/burstly-sdk\\\"",
+					"\\\"$(SRCROOT)/inmobi-sdk\\\"",
+					"\\\"$(SRCROOT)/burstly-sdk-old\\\"",
+					"\\\"$(SRCROOT)/burstly-sdk-new\\\"",
+					"\\\"$(SRCROOT)/BurstlySDK\\\"",
+					/Users/alex/Projects/freshplanet/anes/burstly/ios/BurstlySDK,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
 		FAD66E8115D2C21A00BAA656 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/AirBurstly.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirBurstly/AirBurstly-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/burstly-sdk\"",
-					"\"$(SRCROOT)/inmobi-sdk\"",
-					"\"$(SRCROOT)/burstly-sdk-old\"",
-					"\"$(SRCROOT)/burstly-sdk-new\"",
-					"\"$(SRCROOT)/BurstlySDK\"",
+					"\\\"$(SRCROOT)/burstly-sdk\\\"",
+					"\\\"$(SRCROOT)/inmobi-sdk\\\"",
+					"\\\"$(SRCROOT)/burstly-sdk-old\\\"",
+					"\\\"$(SRCROOT)/burstly-sdk-new\\\"",
+					"\\\"$(SRCROOT)/BurstlySDK\\\"",
+					/Users/alex/Projects/freshplanet/anes/burstly/ios/BurstlySDK,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};

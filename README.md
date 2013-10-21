@@ -1,15 +1,15 @@
-Air Native Extension for Burstly (iOS + Android)
+Air Native Extension for Burstly SkyRocket (iOS + Android)
 ======================================
 
-This is an [Air native extension](http://www.adobe.com/devnet/air/native-extensions-for-air.html) for [Burstly](http://burstly.com) SDK on iOS and Android. It has been developed by [FreshPlanet](http://freshplanet.com) and is used in the game [SongPop](http://songpop.fm).
+This is an [Air native extension](http://www.adobe.com/devnet/air/native-extensions-for-air.html) for [Burstly SkyRocket](http://www.skyrocketapp.com/) SDK on iOS and Android. It has been developed by [FreshPlanet](http://freshplanet.com) and is used in the game [SongPop](http://songpop.fm).
 
 
-Burstly SDK
+SkyRocket SDK
 --------
 
-This ANE includes the following versions of the Burstly SDK:
-* iOS: 1.40
-* Android: 1.24
+This ANE includes the following versions of the SkyRocket SDK:
+* iOS: 2.5
+* Android: 1.33
 
 It only supports displaying a bottom banner and/or a fullscreen interstitial.
 
@@ -23,25 +23,25 @@ The ANE binary (AirBurstly.ane) is located in the *bin* folder. You should add i
 Usage
 -----
     
-    ```actionscript
-    // Initialize Burstly
-    Burstly.getInstance().init("MY_BURSTLY_APP_ID", "MY_BURSTLY_BANNER_ZONE_ID", "MY_BURSTLY_INTERSTITIAL_ZONE_ID");
+```actionscript
+// Initialize Burstly
+Burstly.getInstance().init("MY_BURSTLY_APP_ID", "MY_BURSTLY_BANNER_ZONE_ID", "MY_BURSTLY_INTERSTITIAL_ZONE_ID");
 
-    // Show the banner
-    Burstly.getInstance().showBanner();
+// Show the banner
+Burstly.getInstance().showBanner();
 
-    // Hide the banner
-    Burstly.getInstance().hideBanner();
+// Hide the banner
+Burstly.getInstance().hideBanner();
 
-    // Check if an interstitial is pre-cached
-    Burstly.getInstance().isInterstitialPreCached();
+// Check if an interstitial is pre-cached
+Burstly.getInstance().isInterstitialPreCached();
 
-    // Cache the interstitial
-    Burstly.getInstance().cacheInterstitial();
+// Cache the interstitial
+Burstly.getInstance().cacheInterstitial();
 
-    // Show the interstitial
-    Burstly.getInstance().showInterstitial();
-    ```
+// Show the interstitial
+Burstly.getInstance().showInterstitial();
+```
 
 
 Build script
@@ -49,10 +49,12 @@ Build script
 
 Should you need to edit the extension source code and/or recompile it, you will find an ant build script (build.xml) in the *build* folder:
 
-    cd /path/to/the/ane/build
-    mv example.build.config build.config
-    #edit the build.config file to provide your machine-specific paths
-    ant
+```bash
+cd /path/to/the/ane/build
+mv example.build.config build.config
+#edit the build.config file to provide your machine-specific paths
+ant
+```
 
 
 Authors

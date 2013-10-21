@@ -16,9 +16,9 @@
 //  
 //////////////////////////////////////////////////////////////////////////////////////-->
 
-<extension xmlns="http://ns.adobe.com/air/extension/3.1">
+<extension xmlns="http://ns.adobe.com/air/extension/3.9">
     <id>com.freshplanet.AirBurstly</id>
-    <versionNumber>1.0</versionNumber>
+    <versionNumber>2.0</versionNumber>
     <platforms>
         <platform name="iPhone-ARM">
             <applicationDeployment>
