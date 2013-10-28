@@ -12,6 +12,9 @@
 		FA17542C180DBFEF002DC69C /* FPANEUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FA17542B180DBFEF002DC69C /* FPANEUtils.m */; };
 		FA17542F180DD1DB002DC69C /* AirBurstlyBannerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA17542E180DD1DB002DC69C /* AirBurstlyBannerDelegate.m */; };
 		FA175432180DD36C002DC69C /* AirBurstlyInterstitialDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA175431180DD36C002DC69C /* AirBurstlyInterstitialDelegate.m */; };
+		FA7C1713181EBBB8002B8486 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7C1712181EBBB8002B8486 /* CoreMedia.framework */; };
+		FAA9CA7E181EBBE80074DBAB /* ApplifierImpact.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA9CA7C181EBBE80074DBAB /* ApplifierImpact.framework */; };
+		FAA9CA7F181EBBE80074DBAB /* libBurstlyImpactAdaptor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA9CA7D181EBBE80074DBAB /* libBurstlyImpactAdaptor.a */; };
 		FAC5E7F1180DA57E00A3F15D /* libBurstly.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC5E7F0180DA57E00A3F15D /* libBurstly.a */; };
 		FAC5E7F3180DA5A900A3F15D /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC5E7F2180DA5A900A3F15D /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FAC5E7F5180DA5D800A3F15D /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC5E7F4180DA5D800A3F15D /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -69,6 +72,10 @@
 		FA17542E180DD1DB002DC69C /* AirBurstlyBannerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirBurstlyBannerDelegate.m; sourceTree = "<group>"; };
 		FA175430180DD36C002DC69C /* AirBurstlyInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirBurstlyInterstitialDelegate.h; sourceTree = "<group>"; };
 		FA175431180DD36C002DC69C /* AirBurstlyInterstitialDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirBurstlyInterstitialDelegate.m; sourceTree = "<group>"; };
+		FA7C1712181EBBB8002B8486 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		FAA9CA7B181EBBE80074DBAB /* ApplifierImpact.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ApplifierImpact.bundle; sourceTree = "<group>"; };
+		FAA9CA7C181EBBE80074DBAB /* ApplifierImpact.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ApplifierImpact.framework; sourceTree = "<group>"; };
+		FAA9CA7D181EBBE80074DBAB /* libBurstlyImpactAdaptor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBurstlyImpactAdaptor.a; sourceTree = "<group>"; };
 		FAC5E7D6180DA57E00A3F15D /* OAIAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAIAdManager.h; sourceTree = "<group>"; };
 		FAC5E7D7180DA57E00A3F15D /* OAIAdManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAIAdManagerDelegate.h; sourceTree = "<group>"; };
 		FAC5E7D9180DA57E00A3F15D /* BurstlyAdBannerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurstlyAdBannerDelegate.h; sourceTree = "<group>"; };
@@ -132,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAA9CA7E181EBBE80074DBAB /* ApplifierImpact.framework in Frameworks */,
 				FAC5E7F3180DA5A900A3F15D /* Accounts.framework in Frameworks */,
 				FAD66EAD15D2F62600BAA656 /* AddressBook.framework in Frameworks */,
 				FAD66EAE15D2F62600BAA656 /* AddressBookUI.framework in Frameworks */,
@@ -141,6 +149,7 @@
 				FAD66EB115D2F62600BAA656 /* CFNetwork.framework in Frameworks */,
 				FAD66EB215D2F62600BAA656 /* CoreGraphics.framework in Frameworks */,
 				FAD66EB315D2F62600BAA656 /* CoreLocation.framework in Frameworks */,
+				FA7C1713181EBBB8002B8486 /* CoreMedia.framework in Frameworks */,
 				FAD66EB415D2F62600BAA656 /* CoreMotion.framework in Frameworks */,
 				FAD66EB515D2F62600BAA656 /* CoreTelephony.framework in Frameworks */,
 				FAD66EB615D2F62600BAA656 /* EventKit.framework in Frameworks */,
@@ -148,6 +157,7 @@
 				FAD66E7515D2C21A00BAA656 /* Foundation.framework in Frameworks */,
 				FAD66EB815D2F62600BAA656 /* iAd.framework in Frameworks */,
 				FAC5E7F1180DA57E00A3F15D /* libBurstly.a in Frameworks */,
+				FAA9CA7F181EBBE80074DBAB /* libBurstlyImpactAdaptor.a in Frameworks */,
 				FAD66EC515D2F63000BAA656 /* libsqlite3.dylib in Frameworks */,
 				FAD66EC715D2F63900BAA656 /* libxml2.dylib in Frameworks */,
 				FAD66EC915D2F63F00BAA656 /* libz.dylib in Frameworks */,
@@ -170,6 +180,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FAA9CA7A181EBBE80074DBAB /* ApplifierImpact */ = {
+			isa = PBXGroup;
+			children = (
+				FAA9CA7B181EBBE80074DBAB /* ApplifierImpact.bundle */,
+				FAA9CA7C181EBBE80074DBAB /* ApplifierImpact.framework */,
+				FAA9CA7D181EBBE80074DBAB /* libBurstlyImpactAdaptor.a */,
+			);
+			path = ApplifierImpact;
+			sourceTree = "<group>";
+		};
 		FAC5E7D3180DA57E00A3F15D /* BurstlySDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +280,7 @@
 		FAD66E7315D2C21A00BAA656 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FAA9CA7A181EBBE80074DBAB /* ApplifierImpact */,
 				FAC5E7D3180DA57E00A3F15D /* BurstlySDK */,
 				FAC5E7F2180DA5A900A3F15D /* Accounts.framework */,
 				FAD66E9615D2F62600BAA656 /* AddressBook.framework */,
@@ -270,6 +291,7 @@
 				FAD66E9A15D2F62600BAA656 /* CFNetwork.framework */,
 				FAD66E9B15D2F62600BAA656 /* CoreGraphics.framework */,
 				FAD66E9C15D2F62600BAA656 /* CoreLocation.framework */,
+				FA7C1712181EBBB8002B8486 /* CoreMedia.framework */,
 				FAD66E9D15D2F62600BAA656 /* CoreMotion.framework */,
 				FAD66E9E15D2F62600BAA656 /* CoreTelephony.framework */,
 				FAD66E9F15D2F62600BAA656 /* EventKit.framework */,
@@ -347,7 +369,7 @@
 		FAD66E6815D2C21A00BAA656 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = FreshPlanet;
 			};
 			buildConfigurationList = FAD66E6B15D2C21A00BAA656 /* Build configuration list for PBXProject "AirBurstly" */;
@@ -403,6 +425,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-weak-library",
 					/usr/lib/libSystem.B.dylib,
@@ -467,17 +490,22 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/AirBurstly.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/alex/Projects/freshplanet/anes/burstly/ios/ApplifierImpact,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirBurstly/AirBurstly-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/burstly-sdk\\\"",
-					"\\\"$(SRCROOT)/inmobi-sdk\\\"",
-					"\\\"$(SRCROOT)/burstly-sdk-old\\\"",
-					"\\\"$(SRCROOT)/burstly-sdk-new\\\"",
-					"\\\"$(SRCROOT)/BurstlySDK\\\"",
+					"\\\\\\\"$(SRCROOT)/burstly-sdk\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/inmobi-sdk\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/burstly-sdk-old\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/burstly-sdk-new\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/BurstlySDK\\\\\\\"",
 					/Users/alex/Projects/freshplanet/anes/burstly/ios/BurstlySDK,
+					/Users/alex/Projects/freshplanet/anes/burstly/ios/ApplifierImpact,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -491,17 +519,22 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/AirBurstly.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/alex/Projects/freshplanet/anes/burstly/ios/ApplifierImpact,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirBurstly/AirBurstly-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/burstly-sdk\\\"",
-					"\\\"$(SRCROOT)/inmobi-sdk\\\"",
-					"\\\"$(SRCROOT)/burstly-sdk-old\\\"",
-					"\\\"$(SRCROOT)/burstly-sdk-new\\\"",
-					"\\\"$(SRCROOT)/BurstlySDK\\\"",
+					"\\\\\\\"$(SRCROOT)/burstly-sdk\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/inmobi-sdk\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/burstly-sdk-old\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/burstly-sdk-new\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/BurstlySDK\\\\\\\"",
 					/Users/alex/Projects/freshplanet/anes/burstly/ios/BurstlySDK,
+					/Users/alex/Projects/freshplanet/anes/burstly/ios/ApplifierImpact,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

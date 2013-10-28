@@ -60,7 +60,7 @@
 
 - (void)burstlyBanner:(BurstlyBanner *)view didFail:(NSDictionary *)info
 {
-    FPANE_Log(self.context, [NSString stringWithFormat:@"Did fail to load %@ banner. Error: %@", [info objectForKey:BurstlyInfoNetwork], [info objectForKey:BurstlyInfoError]]);
+    FPANE_Log(self.context, [NSString stringWithFormat:@"Did fail to load banner. Error: %@", [info objectForKey:BurstlyInfoError]]);
 }
 
 @end

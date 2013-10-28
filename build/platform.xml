@@ -21,5 +21,8 @@
         <option>-weak_framework PassKit</option>
 		<option>-framework StoreKit</option>
         <option>-weak_framework Twitter</option>
-    </linkerOptions> 
+    </linkerOptions>
+    <packagedDependencies>
+        <packagedDependency>ApplifierImpact.framework</packagedDependency>
+    </packagedDependencies>
 </platform>

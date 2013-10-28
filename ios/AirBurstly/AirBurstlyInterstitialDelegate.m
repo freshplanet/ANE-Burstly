@@ -73,7 +73,7 @@
 - (void)burstlyInterstitial:(BurstlyInterstitial *)ad didFail:(NSDictionary *)info
 {
     FPANE_DispatchEvent(self.context, INTERSTITIAL_DID_FAIL_EVENT);
-    FPANE_Log(self.context, [NSString stringWithFormat:@"Did fail to load %@ interstitial. Error: %@", [info objectForKey:BurstlyInfoNetwork], [info objectForKey:BurstlyInfoError]]);
+    FPANE_Log(self.context, [NSString stringWithFormat:@"Did fail to load interstitial. Error: %@", [info objectForKey:BurstlyInfoError]]);
 }
 
 @end
