@@ -32,8 +32,9 @@ public final class BurstlyProperties
     	sProperties.setProperty(PropertyKey.SINGLE_DOWNLOAD_TRACK_URI, "/scripts/ConfirmDownload.aspx");
     	sProperties.setProperty(PropertyKey.CONFIGURATION_URI, "/Services/Client.svc/GetConfiguration");
     	sProperties.setProperty(PropertyKey.CONTENT_ROOT, "http://cdn.appads.com/sdk");
-    	sProperties.setProperty(PropertyKey.SDK_VERSION, "1.24.0.38159");
+    	sProperties.setProperty(PropertyKey.SDK_VERSION, "1.29.0.42664");
     	sProperties.setProperty(PropertyKey.AD_SERVER_URI, "/Services/SysInfo.svc/GetAdServerList");
+      sProperties.setProperty(PropertyKey.BUILD_ID, "227");
     	
       sIsLoaded = true;
     }
@@ -93,5 +94,6 @@ public final class BurstlyProperties
     static final String CONTENT_ROOT = "connect.contentRoot";
     static final String SDK_VERSION = "sdk.version";
     static final String AD_SERVER_URI = "connect.adServerList";
+    static final String BUILD_ID = "buildID";
   }
 }

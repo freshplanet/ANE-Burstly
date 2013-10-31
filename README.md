@@ -9,7 +9,7 @@ SkyRocket SDK
 
 This ANE includes the following versions of the SkyRocket SDK:
 * iOS: 2.5
-* Android: 1.33
+* Android: 1.29
 
 It only supports displaying a bottom banner and/or a fullscreen interstitial.
 
