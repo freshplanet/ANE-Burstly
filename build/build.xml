@@ -5,7 +5,8 @@
     <property file="build.config"/>
 
     <!-- All -->
-    <target name="all" depends="ios,ios-dependencies,android,swc,package" description="Full build of extension"/>
+    <!--<target name="all" depends="ios,ios-dependencies,android,swc,package" description="Full build of extension"/>-->
+	<target name="all" depends="ios,ios-dependencies,swc,package" description="Full build of extension"/>
 
     <!-- iOS -->
     <target name="ios" description="Build iOS Library">
@@ -40,7 +41,7 @@
     </target>
 
     <!-- Android -->
-    <target name="android" description="Build Android Library">
+    <!--<target name="android" description="Build Android Library">
         <delete dir="../android/temp"/>
         <mkdir dir="../android/temp/classes"/>
 
@@ -69,7 +70,7 @@
             <fileset dir="../android/temp/zip/res"/>
         </copy>
         <delete dir="../android/temp"/>
-    </target>
+    </target>-->
 
     <!-- Actionscript -->
     <target name="swc" description="Build SWC library">

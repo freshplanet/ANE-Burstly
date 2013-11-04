@@ -35,10 +35,10 @@ package com.freshplanet.ane.AirBurstly
 		
 		public var logEnabled : Boolean = false;
 		
-		/** Burstly is supported on iOS and Android devices. */
+		/** This is the debug build - no android support **/
 		public static function get isSupported() : Boolean
 		{
-			return Capabilities.manufacturer.indexOf("iOS") != -1 || Capabilities.manufacturer.indexOf("Android") != -1;
+			return Capabilities.manufacturer.indexOf("iOS") != -1;
 		}
 		
 		public function Burstly()

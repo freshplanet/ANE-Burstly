@@ -28,13 +28,9 @@
             </applicationDeployment>
         </platform>
 
-        <platform name="Android-ARM"> 
-            <applicationDeployment> 
-                <nativeLibrary>libAirBurstly.jar</nativeLibrary> 
-                <initializer>com.freshplanet.burstly.Extension</initializer> 
-                <finalizer>com.freshplanet.burstly.Extension</finalizer> 
-            </applicationDeployment>
-        </platform> 
+		<platform name="Android-ARM"> 
+            <applicationDeployment/> 
+        </platform>
 
         <platform name="default"> 
             <applicationDeployment/> 
