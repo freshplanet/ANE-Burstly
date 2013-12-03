@@ -22,7 +22,8 @@
 
 #define INTERSTITIAL_WILL_DISMISS_EVENT   @"INTERSTITIAL_WILL_DISMISS"
 #define INTERSTITIAL_DID_FAIL_EVENT       @"INTERSTITIAL_DID_FAIL"
-
+#define INTERSTITIAL_WAS_CLICKED_EVENT    @"INTERSTITIAL_WAS_CLICKED"
+#define INTERSTITIAL_WILL_APPEAR_EVENT   @"INTERSTITIAL_WILL_APPEAR"
 
 @interface AirBurstlyInterstitialDelegate ()
 
@@ -74,6 +75,16 @@
 {
     FPANE_DispatchEvent(self.context, INTERSTITIAL_DID_FAIL_EVENT);
     FPANE_Log(self.context, [NSString stringWithFormat:@"Did fail to load interstitial. Error: %@", [info objectForKey:BurstlyInfoError]]);
+}
+
+- (void)burstlyInterstitial:(BurstlyInterstitial *)ad wasClicked:(NSDictionary *)info
+{
+    FPANE_DispatchEvent(self.context, INTERSTITIAL_WAS_CLICKED_EVENT);
+}
+
+- (void)burstlyInterstitial:(BurstlyInterstitial *)ad willTakeOverFullScreen:(NSDictionary *)info
+{
+    FPANE_DispatchEvent(self.context, INTERSTITIAL_WILL_APPEAR_EVENT);
 }
 
 @end

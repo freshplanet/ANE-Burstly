@@ -77,11 +77,16 @@ package com.freshplanet.ane.AirBurstly
 			return _context.call("AirBurstlyGetSDKVersion") as String;
 		}
 		
-		public function init( appId : String, bannerZoneId : String, interstitialZoneId : String ) : void
+		public function init( appId : String, bannerZoneId : String, interstitialZoneId : String, additionalZoneIds : Array = null ) : void
 		{
 			if (!isSupported) return;
-			
-			_context.call("AirBurstlyInit", appId, bannerZoneId, interstitialZoneId);
+			if (additionalZoneIds != null)
+			{
+				_context.call("AirBurstlyInit", appId, bannerZoneId, interstitialZoneId, additionalZoneIds);
+			} else
+			{
+				_context.call("AirBurstlyInit", appId, bannerZoneId, interstitialZoneId);
+			}
 		}
 		
 		public function showBanner() : void
@@ -98,25 +103,41 @@ package com.freshplanet.ane.AirBurstly
 			_context.call("AirBurstlyHideBanner");
 		}
 		
-		public function isInterstitialPreCached() : Boolean
+		public function isInterstitialPreCached(additionalZoneId : String = null) : Boolean
 		{
 			if (!isSupported) return false;
-			
-			return _context.call("AirBurstlyIsInterstitialPreCached");
+			if (additionalZoneId != null)
+			{
+				return _context.call("AirBurstlyIsInterstitialPreCached", additionalZoneId);
+			} else
+			{
+				return _context.call("AirBurstlyIsInterstitialPreCached");
+			}
 		}
 		
-		public function cacheInterstitial() : void
+		public function cacheInterstitial(additionalZoneId : String = null) : void
 		{
 			if (!isSupported) return;
 			
-			_context.call("AirBurstlyCacheInterstitial");
+			if (additionalZoneId != null)
+			{
+				_context.call("AirBurstlyCacheInterstitial", additionalZoneId);
+			} else
+			{
+				_context.call("AirBurstlyCacheInterstitial");
+			}
 		}
 		
-		public function showInterstitial() : void
+		public function showInterstitial(additionalZoneId : String = null) : void
 		{
 			if (!isSupported) return;
-			
-			_context.call("AirBurstlyShowInterstitial");
+			if (additionalZoneId != null)
+			{
+				_context.call("AirBurstlyShowInterstitial", additionalZoneId);
+			} else
+			{
+				_context.call("AirBurstlyShowInterstitial");
+			}
 		}
 		
 		public function setUserInfo( infos : Object ) : void
@@ -153,7 +174,7 @@ package com.freshplanet.ane.AirBurstly
 			{
 				log(event.level);
 			}
-			else if (event.code == BurstlyEvent.INTERSTITIAL_WILL_DISMISS || event.code == BurstlyEvent.INTERSTITIAL_DID_FAIL)
+			else if ([BurstlyEvent.INTERSTITIAL_WAS_CLICKED, BurstlyEvent.INTERSTITIAL_WILL_DISMISS, BurstlyEvent.INTERSTITIAL_DID_FAIL, BurstlyEvent.INTERSTITIAL_WILL_APPEAR].indexOf(event.code) > -1)
 			{
 				dispatchEvent(new BurstlyEvent(event.code));
 			}

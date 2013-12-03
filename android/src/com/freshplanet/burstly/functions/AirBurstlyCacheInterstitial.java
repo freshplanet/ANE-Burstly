@@ -20,7 +20,10 @@ package com.freshplanet.burstly.functions;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
+import com.adobe.fre.FREInvalidObjectException;
 import com.adobe.fre.FREObject;
+import com.adobe.fre.FRETypeMismatchException;
+import com.adobe.fre.FREWrongThreadException;
 import com.freshplanet.burstly.Extension;
 
 public class AirBurstlyCacheInterstitial implements FREFunction
@@ -28,7 +31,29 @@ public class AirBurstlyCacheInterstitial implements FREFunction
 	@Override
 	public FREObject call(FREContext context, FREObject[] args)
 	{
-		Extension.context.cacheInterstitial();
+		String additionalZoneId = null;
+		if (args != null && args.length > 0)
+		{
+			try {
+				additionalZoneId = args[0].getAsString();
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (FRETypeMismatchException e) {
+				e.printStackTrace();
+			} catch (FREInvalidObjectException e) {
+				e.printStackTrace();
+			} catch (FREWrongThreadException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if (additionalZoneId != null)
+		{
+			Extension.context.cacheInterstitial(additionalZoneId);
+		} else
+		{
+			Extension.context.cacheInterstitial();
+		}
 		
 		return null;
 	}

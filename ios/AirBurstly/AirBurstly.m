@@ -30,12 +30,19 @@ static BOOL bannerShown;
 static AirBurstlyBannerDelegate *bannerDelegate;
 static BurstlyInterstitial *interstitial;
 static AirBurstlyInterstitialDelegate *interstitialDelegate;
+static NSMutableArray *additionalInterstitials;
 
 DEFINE_ANE_FUNCTION(AirBurstlyInit)
 {
     NSString *appId = FPANE_FREObjectToNSString(argv[0]);
     NSString *bannerZoneId = FPANE_FREObjectToNSString(argv[1]);
     NSString *interstitialZoneId = FPANE_FREObjectToNSString(argv[2]);
+    NSArray *additionalInterstitialZoneIds = nil;
+    
+    if (argc > 3) // means we have more interstitials
+    {
+        additionalInterstitialZoneIds = FPANE_FREObjectToNSArrayOfNSString(argv[3]);
+    }
     
     if (bannerZoneId)
     {
@@ -55,6 +62,21 @@ DEFINE_ANE_FUNCTION(AirBurstlyInit)
         interstitial = [[BurstlyInterstitial alloc] initAppId:appId zoneId:interstitialZoneId delegate:interstitialDelegate];
     }
     
+    if (additionalInterstitialZoneIds != nil)
+    {
+        if (interstitialDelegate == nil)
+        {
+            interstitialDelegate = [[AirBurstlyInterstitialDelegate alloc] initWithContext:context];
+        }
+        
+        additionalInterstitials = [NSMutableArray arrayWithCapacity:[additionalInterstitialZoneIds count]];
+        for (NSString* zoneId in additionalInterstitialZoneIds)
+        {
+            BurstlyInterstitial *interstitial = [[BurstlyInterstitial alloc] initAppId:appId zoneId:zoneId delegate:interstitialDelegate];
+            [additionalInterstitials addObject:interstitial];
+        }
+    }
+    
     return nil;
 }
 
@@ -71,6 +93,14 @@ DEFINE_ANE_FUNCTION(AirBurstlySetUserInfo)
     
     [banner.adRequest setTargetingParameters:infoString];
     [interstitial.adRequest setTargetingParameters:infoString];
+    
+    if (additionalInterstitials != nil)
+    {
+        for (BurstlyInterstitial *interstitial in additionalInterstitials)
+        {
+            [interstitial.adRequest setTargetingParameters:infoString];
+        }
+    }
     
     return nil;
 }
@@ -100,19 +130,90 @@ DEFINE_ANE_FUNCTION(AirBurstlyHideBanner)
 
 DEFINE_ANE_FUNCTION(AirBurstlyIsInterstitialPreCached)
 {
-    return FPANE_BOOLToFREObject(interstitial.state == BurstlyInterstitialStateCached);
+    BurstlyInterstitial *selectedInterstitial = nil;
+    if (argc > 0)
+    {
+        NSString *zoneId = FPANE_FREObjectToNSString(argv[0]);
+        if (zoneId != nil)
+        {
+            for (BurstlyInterstitial *possibleInterstitial in additionalInterstitials)
+            {
+                if ([possibleInterstitial.zoneId isEqualToString:zoneId])
+                {
+                    selectedInterstitial = possibleInterstitial;
+                    break;
+                }
+            }
+        }
+    } else
+    {
+        selectedInterstitial = interstitial;
+    }
+    if (selectedInterstitial)
+    {
+        return FPANE_BOOLToFREObject(selectedInterstitial.state == BurstlyInterstitialStateCached);
+    } else
+    {
+        return FPANE_BOOLToFREObject(NO);
+    }
 }
 
 DEFINE_ANE_FUNCTION(AirBurstlyCacheInterstitial)
 {
-    [interstitial cacheAd];
+    BurstlyInterstitial *selectedInterstitial = nil;
+    if (argc > 0)
+    {
+        NSString *zoneId = FPANE_FREObjectToNSString(argv[0]);
+        if (zoneId != nil)
+        {
+            for (BurstlyInterstitial *possibleInterstitial in additionalInterstitials)
+            {
+                if ([possibleInterstitial.zoneId isEqualToString:zoneId])
+                {
+                    selectedInterstitial = possibleInterstitial;
+                    break;
+                }
+            }
+        }
+    } else
+    {
+        selectedInterstitial = interstitial;
+    }
+
+    if (selectedInterstitial)
+    {
+        [selectedInterstitial cacheAd];
+    }
     
     return nil;
 }
 
 DEFINE_ANE_FUNCTION(AirBurstlyShowInterstitial)
 {
-    [interstitial showAd];
+    BurstlyInterstitial *selectedInterstitial = nil;
+    if (argc > 0)
+    {
+        NSString *zoneId = FPANE_FREObjectToNSString(argv[0]);
+        if (zoneId != nil)
+        {
+            for (BurstlyInterstitial *possibleInterstitial in additionalInterstitials)
+            {
+                if ([possibleInterstitial.zoneId isEqualToString:zoneId])
+                {
+                    selectedInterstitial = possibleInterstitial;
+                    break;
+                }
+            }
+        }
+    } else
+    {
+        selectedInterstitial = interstitial;
+    }
+    
+    if (selectedInterstitial)
+    {
+        [interstitial showAd];
+    }
     
     return nil;
 }
