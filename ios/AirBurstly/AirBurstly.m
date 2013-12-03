@@ -64,7 +64,7 @@ DEFINE_ANE_FUNCTION(AirBurstlyInit)
     
     if (additionalInterstitialZoneIds != nil)
     {
-        if (interstitialDelegate == nil)
+        if (!interstitialDelegate)
         {
             interstitialDelegate = [[AirBurstlyInterstitialDelegate alloc] initWithContext:context];
         }
@@ -72,8 +72,7 @@ DEFINE_ANE_FUNCTION(AirBurstlyInit)
         additionalInterstitials = [NSMutableArray arrayWithCapacity:[additionalInterstitialZoneIds count]];
         for (NSString* zoneId in additionalInterstitialZoneIds)
         {
-            BurstlyInterstitial *interstitial = [[BurstlyInterstitial alloc] initAppId:appId zoneId:zoneId delegate:interstitialDelegate];
-            [additionalInterstitials addObject:interstitial];
+            [additionalInterstitials addObject:[[BurstlyInterstitial alloc] initAppId:appId zoneId:zoneId delegate:interstitialDelegate]];
         }
     }
     
@@ -96,9 +95,9 @@ DEFINE_ANE_FUNCTION(AirBurstlySetUserInfo)
     
     if (additionalInterstitials != nil)
     {
-        for (BurstlyInterstitial *interstitial in additionalInterstitials)
+        for (BurstlyInterstitial *bInterstitial in additionalInterstitials)
         {
-            [interstitial.adRequest setTargetingParameters:infoString];
+            [bInterstitial.adRequest setTargetingParameters:infoString];
         }
     }
     
@@ -212,7 +211,7 @@ DEFINE_ANE_FUNCTION(AirBurstlyShowInterstitial)
     
     if (selectedInterstitial)
     {
-        [interstitial showAd];
+        [selectedInterstitial showAd];
     }
     
     return nil;

@@ -492,20 +492,15 @@
 				DSTROOT = /tmp/AirBurstly.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/alex/Projects/freshplanet/anes/burstly/ios/ApplifierImpact,
+					"$(SRCROOT)/ApplifierImpact",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirBurstly/AirBurstly-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/burstly-sdk\\\\\\\"",
-					"\\\\\\\"$(SRCROOT)/inmobi-sdk\\\\\\\"",
-					"\\\\\\\"$(SRCROOT)/burstly-sdk-old\\\\\\\"",
-					"\\\\\\\"$(SRCROOT)/burstly-sdk-new\\\\\\\"",
-					"\\\\\\\"$(SRCROOT)/BurstlySDK\\\\\\\"",
-					/Users/alex/Projects/freshplanet/anes/burstly/ios/BurstlySDK,
-					/Users/alex/Projects/freshplanet/anes/burstly/ios/ApplifierImpact,
+					"$(SRCROOT)/BurstlySDK",
+					"$(SRCROOT)/ApplifierImpact",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -521,20 +516,15 @@
 				DSTROOT = /tmp/AirBurstly.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/alex/Projects/freshplanet/anes/burstly/ios/ApplifierImpact,
+					"$(SRCROOT)/ApplifierImpact",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirBurstly/AirBurstly-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/burstly-sdk\\\\\\\"",
-					"\\\\\\\"$(SRCROOT)/inmobi-sdk\\\\\\\"",
-					"\\\\\\\"$(SRCROOT)/burstly-sdk-old\\\\\\\"",
-					"\\\\\\\"$(SRCROOT)/burstly-sdk-new\\\\\\\"",
-					"\\\\\\\"$(SRCROOT)/BurstlySDK\\\\\\\"",
-					/Users/alex/Projects/freshplanet/anes/burstly/ios/BurstlySDK,
-					/Users/alex/Projects/freshplanet/anes/burstly/ios/ApplifierImpact,
+					"$(SRCROOT)/BurstlySDK",
+					"$(SRCROOT)/ApplifierImpact",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
