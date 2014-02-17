@@ -30,11 +30,11 @@ public final class BurstlyProperties
     	sProperties.setProperty(PropertyKey.SINGLE_TRACK_URI, "/Services/PubAd.svc/Track");
     	sProperties.setProperty(PropertyKey.SINGLE_TRACK_CLICK_URI, "/Services/PubAd.svc/Click");
     	sProperties.setProperty(PropertyKey.SINGLE_DOWNLOAD_TRACK_URI, "/scripts/ConfirmDownload.aspx");
-    	sProperties.setProperty(PropertyKey.CONFIGURATION_URI, "/Services/Client.svc/GetConfiguration");
+    	sProperties.setProperty(PropertyKey.CONFIGURATION_URI, "/Services/v1/SdkConfiguration/Get");
     	sProperties.setProperty(PropertyKey.CONTENT_ROOT, "http://cdn.appads.com/sdk");
-    	sProperties.setProperty(PropertyKey.SDK_VERSION, "1.29.0.42664");
+    	sProperties.setProperty(PropertyKey.SDK_VERSION, "1.35.0.50370");
     	sProperties.setProperty(PropertyKey.AD_SERVER_URI, "/Services/SysInfo.svc/GetAdServerList");
-      sProperties.setProperty(PropertyKey.BUILD_ID, "227");
+      sProperties.setProperty(PropertyKey.BUILD_ID, "312");
     	
       sIsLoaded = true;
     }
